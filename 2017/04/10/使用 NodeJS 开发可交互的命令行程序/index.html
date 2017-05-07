@@ -1,0 +1,899 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node.js,JavaScript," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="原文地址 How To Develop An Interactive Command Line Application Using Node.js  在过去五年中，Node.js已经帮助软件开发统一起来。您可以在Node.js中做任何事情，无论是前端开发、服务器端脚本、跨平台桌面应用程序、跨平台移动应用程序、物联网等。编写命令行工具也比以往任何时候都更容易，因为Node.js - 不仅仅是任何命">
+<meta name="keywords" content="node.js,JavaScript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 NodeJS 开发可交互的命令行程序">
+<meta property="og:url" content="http://yoursite.com/2017/04/10/使用 NodeJS 开发可交互的命令行程序/index.html">
+<meta property="og:site_name" content="陈辉的博客">
+<meta property="og:description" content="原文地址 How To Develop An Interactive Command Line Application Using Node.js  在过去五年中，Node.js已经帮助软件开发统一起来。您可以在Node.js中做任何事情，无论是前端开发、服务器端脚本、跨平台桌面应用程序、跨平台移动应用程序、物联网等。编写命令行工具也比以往任何时候都更容易，因为Node.js - 不仅仅是任何命">
+<meta property="og:updated_time" content="2017-04-28T08:54:47.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用 NodeJS 开发可交互的命令行程序">
+<meta name="twitter:description" content="原文地址 How To Develop An Interactive Command Line Application Using Node.js  在过去五年中，Node.js已经帮助软件开发统一起来。您可以在Node.js中做任何事情，无论是前端开发、服务器端脚本、跨平台桌面应用程序、跨平台移动应用程序、物联网等。编写命令行工具也比以往任何时候都更容易，因为Node.js - 不仅仅是任何命">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/04/10/使用 NodeJS 开发可交互的命令行程序/"/>
+
+
+
+
+
+  <title>使用 NodeJS 开发可交互的命令行程序 | 陈辉的博客</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈辉的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Long long ago...</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/04/10/使用 NodeJS 开发可交互的命令行程序/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈辉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈辉的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">使用 NodeJS 开发可交互的命令行程序</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-04-10T00:00:00+08:00">
+                2017-04-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端技术/Node/" itemprop="url" rel="index">
+                    <span itemprop="name">Node</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/04/10/使用 NodeJS 开发可交互的命令行程序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/04/10/使用 NodeJS 开发可交互的命令行程序/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>原文地址 <a href="https://www.smashingmagazine.com/2017/03/interactive-command-line-application-node-js/" target="_blank" rel="external">How To Develop An Interactive Command Line Application Using Node.js</a></p>
+</blockquote>
+<p>在过去五年中，<a href="https://nodejs.org/" target="_blank" rel="external">Node.js</a>已经帮助软件开发统一起来。您可以在Node.js中做任何事情，无论是前端开发、服务器端脚本、跨平台桌面应用程序、跨平台移动应用程序、物联网等。编写命令行工具也比以往任何时候都更容易，因为Node.js - 不仅仅是任何命令行工具。而是交互、实用和耗时较少的工具。</p>
+<p>如果您是前端开发人员，那么您一定听说过<a href="http://gulpjs.com/" target="_blank" rel="external">Gulp</a>，<a href="https://cli.angular.io/" target="_blank" rel="external">Angular CLI</a>，<a href="https://cordova.apache.org/" target="_blank" rel="external">Cordova</a>，<a href="http://yeoman.io/" target="_blank" rel="external">Yeoman</a>等。你有没有想过他们如何工作？例如，在Angular CLI的环境下，通过运行类似的命令<code>ng new &lt;project-name&gt;</code>，最终创建一个基于Angular配置的项目。Yeoman等工具要求运行时输入，最后可以帮助您自定义项目的配置。Yeoman中的一些生成器可帮助您在生产环境中部署项目。这正是我们今天要学习的。</p>
+<p>在SMASHINGMAG 上阅读：</p>
+<ul>
+<li><a href="https://www.smashingmagazine.com/2017/02/a-detailed-introduction-to-webpack/" target="_blank" rel="external">Webpack的详细介绍</a></li>
+<li><a href="https://www.smashingmagazine.com/2014/05/detailed-introduction-nodejs-mongodb/" target="_blank" rel="external">Node.js和MongoDB的介绍</a></li>
+<li><a href="https://www.smashingmagazine.com/2016/03/server-side-rendering-react-node-express/" target="_blank" rel="external">服务器端渲染与反应，节点和Express</a></li>
+<li><a href="https://www.smashingmagazine.com/2011/09/useful-node-js-tools-tutorials-and-resources/" target="_blank" rel="external">有用的Node.js工具，教程和资源</a></li>
+</ul>
+<a id="more"></a>
+<p>在本教程中，我们将开发一个接受客户信息CSV文件的命令行应用程序，并使用<a href="https://github.com/sendgrid/sendgrid-nodejs" target="_blank" rel="external">SendGrid API</a>，我们将向他们发送电子邮件。以下是本教程的内容：</p>
+<ol>
+<li><a href="#hello-world">“Hello World”</a></li>
+<li><a href="#cli-arguments">处理命令行参数</a></li>
+<li><a href="#runtime-inputs">运行时用户输入</a></li>
+<li><a href="#async-communication">异步网络通信</a></li>
+<li><a href="#chalk">装饰CLI输出</a></li>
+<li><a href="#shell-command">使其成为shell命令</a></li>
+<li><a href="#beyond-js">不止JavaScript</a></li>
+</ol>
+<h2 id="“Hello-World”"><a href="#“Hello-World”" class="headerlink" title="“Hello World”"></a><span id="hello-world">“Hello World”<span></span></span></h2><p>本教程假设您已在系统上安装了Node.js。如果没有，请<a href="https://nodejs.org/" target="_blank" rel="external">安装</a>。Node.js还附带一个名为<a href="https://www.npmjs.com/" target="_blank" rel="external">npm</a>的包管理器。使用npm，您可以安装许多开源包。您可以在<a href="https://www.npmjs.com/" target="_blank" rel="external">npm的官方网站</a>上获取完整的列表。对于这个项目，我们将使用许多开源模块（稍后再说）。现在，让我们使用npm创建一个Node.js项目。</p>
+<figure class="highlight avrasm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ npm init</div><div class="line"><span class="symbol">name:</span> broadcast</div><div class="line"><span class="symbol">version:</span> <span class="number">0.0</span><span class="number">.1</span></div><div class="line"><span class="symbol">description:</span> <span class="keyword">CLI</span> utility to broadcast emails</div><div class="line">entry point: broadcast.js</div></pre></td></tr></table></figure>
+<p>我创建了一个名为的目录<code>broadcast</code>，其中我已经运行了<code>npm init</code>命令。如您所见，我已经提供了有关项目的基本信息，如名称，描述，版本和入口点。入口点是脚本执行开始的主要JavaScript文件。默认情况下，Node.js分配<code>index.js</code>为入口点; 然而，在这个例子下，我们正在改变成为<code>broadcast.js</code>。运行该<code>npm init</code>命令时，您将获得更多选项，例如Git仓库，许可证和作者。您可以提供值或留空。</p>
+<p>成功执行后<code>npm init</code>，您将发现<code>package.json</code>在同一目录中创建了一个文件。这是我们的配置文件。目前，它掌握了我们在创建项目时提供的信息。您可以<code>package.json</code> 在<a href="https://docs.npmjs.com/files/package.json" target="_blank" rel="external">npm的文档</a>中了解更多信息。</p>
+<p>现在我们的项目已经建立起来，我们来创建一个“Hello world”程序。要开始，在项目中创建一个<code>broadcast.js</code>文件。这将是您的主要文件，并附有以下代码段：</p>
+<figure class="highlight autoit"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">console.<span class="built_in">log</span>(<span class="string">'hello world'</span>)<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>如你所见，“hello word”打印到控制台。您可以使用<code>node broadcast.js</code>或<code>node broadcast</code>， Node.js足够聪明才能理解差异。</p>
+<p>根据<code>package.json</code>文档，有一个名为<code>dependencies</code>的选项，您可以在项目中使用的所有第三方模块及其版本号。如上所述，我们将使用许多第三方开源模块来开发此工具。在我们的例子中，<code>package.json</code>看起来像这样： </p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  <span class="attr">"name"</span>: <span class="string">"broadcast"</span>,</div><div class="line">  <span class="attr">"version"</span>: <span class="string">"0.0.1"</span>,</div><div class="line">  <span class="attr">"description"</span>: <span class="string">"CLI utility to broadcast emails"</span>,</div><div class="line">  <span class="attr">"main"</span>: <span class="string">"broadcast.js"</span>,</div><div class="line">  <span class="attr">"license"</span>: <span class="string">"MIT"</span>,</div><div class="line">  <span class="attr">"dependencies"</span>: &#123;</div><div class="line">    <span class="attr">"async"</span>: <span class="string">"^2.1.4"</span>,</div><div class="line">    <span class="attr">"chalk"</span>: <span class="string">"^1.1.3"</span>,</div><div class="line">    <span class="attr">"commander"</span>: <span class="string">"^2.9.0"</span>,</div><div class="line">    <span class="attr">"csv"</span>: <span class="string">"^1.1.0"</span>,</div><div class="line">    <span class="attr">"inquirer"</span>: <span class="string">"^2.0.0"</span>,</div><div class="line">    <span class="attr">"sendgrid"</span>: <span class="string">"^4.7.1"</span></div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>您必须注意到，我们将使用<a href="http://caolan.github.io/async/docs.html" target="_blank" rel="external">Async</a>，<a href="https://github.com/chalk/chalk" target="_blank" rel="external">Chalk</a>，<a href="https://www.npmjs.com/package/commander" target="_blank" rel="external">Commander</a>，<a href="https://www.npmjs.com/package/csv" target="_blank" rel="external">CSV</a>，<a href="https://github.com/SBoudrias/Inquirer.js/" target="_blank" rel="external">Inquirer.js</a>和<a href="https://github.com/sendgrid/sendgrid-nodejs" target="_blank" rel="external">SendGrid</a>。随着教程的进步，将详细说明这些模块的使用。</p>
+<h2 id="处理命令行参数"><a href="#处理命令行参数" class="headerlink" title="处理命令行参数"></a><span id="cli-arguments">处理命令行参数</span></h2><p>阅读命令行参数并不困难。你可以直接使用<code>process.argv</code>用来阅读它们。但是，解析它们的值和选项是一项繁琐的工作。所以，我们将使用<a href="https://www.npmjs.com/package/commander" target="_blank" rel="external">Commander</a>模块，而不是重新创造轮子。Commander是一个开源的Node.js模块，可帮助您编写交互式命令行工具。它配有非常有趣的功能，用于解析命令行选项，并且它具有类似Git的子命令，但是我最喜欢Commander的是在屏幕自动声明帮助信息。您不必编写额外的代码行 - 只需解析<code>--help</code>或<code>-h</code>即可。当您开始定义各种命令行选项时，屏幕将自动填充。我们来试试吧：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> npm install commander --save</span></div></pre></td></tr></table></figure>
+<p>这将在您的Node.js项目中安装Commander模块。运行<code>npm install with --save</code>选项将自动将Commander包含在项目的依赖项中<code>package.json</code>。在我们的例子中，所有的依赖都已经被提到了。 因此，不需要运行此命令。</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> <span class="keyword">program</span> = require('commander');</div><div class="line"></div><div class="line"><span class="keyword">program</span></div><div class="line">  .<span class="keyword">version</span>('0.0.1')</div><div class="line">  .option('-<span class="keyword">l</span>, --<span class="keyword">list</span> [<span class="keyword">list</span>]', '<span class="keyword">list</span> of customers <span class="keyword">in</span> CSV <span class="keyword">file</span>')</div><div class="line">  .<span class="keyword">parse</span>(process.argv)</div><div class="line"></div><div class="line">console.<span class="built_in">log</span>(<span class="keyword">program</span>.<span class="keyword">list</span>);</div></pre></td></tr></table></figure>
+<p>正如你所看到的，处理命令行参数很简单。我们已经定义了一个<code>--list</code>选项。现在，我们提供的任何值都会在随后的<code>--list</code>选项中存储在一个包含括号中的变量中 - 在这种情况下<code>list</code>。您可以从<code>program</code>变量访问它，这是Commander的一个实例。目前，该程序只接受该<code>--list</code>选项的文件路径并在控制台中打印。</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">node</span> <span class="title">broadcast</span> --list input/employees.csv</div><div class="line">input/employees.csv</div></pre></td></tr></table></figure>
+<p>你一定注意到我们已经调用了一个链接的方法，命名<code>version</code>。每当我们运行命令提供<code>--version</code>或<code>-V</code>作为选项，这个方法中传递的任何值都将被打印出来。</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ <span class="keyword">node</span> <span class="title">broadcast</span> --<span class="keyword">version</span></div><div class="line"><span class="number">0.0</span>.<span class="number">1</span></div></pre></td></tr></table></figure>
+<p>类似地，当您使用该<code>--help</code>选项运行命令时，它将打印您定义的所有选项和子命令。在这种情况下，它将如下所示：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">$ node broadcast --<span class="keyword">help</span></div><div class="line"></div><div class="line">  Usage: broadcast [<span class="keyword">options</span>]</div><div class="line"></div><div class="line">  Option<span class="variable">s:</span></div><div class="line"></div><div class="line">    -h, --<span class="keyword">help</span>                 output usage information</div><div class="line">    -V, --<span class="keyword">version</span>              output the <span class="keyword">version</span> <span class="keyword">number</span></div><div class="line">    -<span class="keyword">l</span>, --<span class="keyword">list</span> <span class="symbol">&lt;list&gt;</span>          <span class="keyword">list</span> of customers in CSV <span class="keyword">file</span></div></pre></td></tr></table></figure>
+<p>现在我们从命令行参数接受文件路径，我们可以使用<a href="https://www.npmjs.com/package/csv" target="_blank" rel="external">CSV</a>模块开始读取CSV文件。CSV模块是用于处理CSV文件的一体化解决方案。从创建CSV文件到解析它，您可以使用此模块实现任何内容。</p>
+<p>因为我们计划使用SendGrid API发送电子邮件，所以我们使用以下文档作为示例CSV文件。使用CSV模块，我们将读取数据并显示相应行中提供的名称和电子邮件地址。</p>
+<table>
+<thead>
+<tr>
+<th>First name</th>
+<th style="text-align:left">Last name</th>
+<th>Email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Dwight</td>
+<td style="text-align:left">Schrute</td>
+<td>dwight.schrute@dundermifflin.com</td>
+</tr>
+<tr>
+<td>Jim</td>
+<td style="text-align:left">Halpert</td>
+<td>jim.halpert@dundermifflin.com</td>
+</tr>
+<tr>
+<td>Pam</td>
+<td style="text-align:left">Beesly</td>
+<td>pam.beesly@dundermifflin.com</td>
+</tr>
+<tr>
+<td>Ryan</td>
+<td style="text-align:left">Howard</td>
+<td>ryan.howard@dundermifflin.com</td>
+</tr>
+<tr>
+<td>Stanley</td>
+<td style="text-align:left">Hudson</td>
+<td>stanley.hudson@dundermifflin.com</td>
+</tr>
+</tbody>
+</table>
+<p>现在，我们来编写一个程序来读取这个CSV文件并将数据打印到控制台。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> program = <span class="built_in">require</span>(<span class="string">'commander'</span>);</div><div class="line"><span class="keyword">const</span> csv = <span class="built_in">require</span>(<span class="string">'csv'</span>);</div><div class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line">program</div><div class="line">  .version(<span class="string">'0.0.1'</span>)</div><div class="line">  .option(<span class="string">'-l, --list [list]'</span>, <span class="string">'List of customers in CSV'</span>)</div><div class="line">  .parse(process.argv)</div><div class="line"></div><div class="line"><span class="keyword">let</span> parse = csv.parse;</div><div class="line"><span class="keyword">let</span> stream = fs.createReadStream(program.list)</div><div class="line">    .pipe(parse(&#123; <span class="attr">delimiter</span> : <span class="string">','</span> &#125;));</div><div class="line"></div><div class="line">stream</div><div class="line">  .on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> firstname = data[<span class="number">0</span>];</div><div class="line">    <span class="keyword">let</span> lastname = data[<span class="number">1</span>];</div><div class="line">    <span class="keyword">let</span> email = data[<span class="number">2</span>];</div><div class="line">    <span class="built_in">console</span>.log(firstname, lastname, email);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<p>使用node<a href="https://nodejs.org/api/fs.html" target="_blank" rel="external">File System</a>模块，我们通过命令行参数读取文件。文件系统模块附带预定义的事件，其中一个事件<code>data</code>是在读取大量数据时触发的。<code>parse</code>方法将CSV文件分割成单独的行并触发多个数据事件。每个数据事件都会发送一列列数据。因此，在这种情况下，它将以以下格式打印数据：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ node broadcast --list input/employees<span class="selector-class">.csv</span></div><div class="line">Dwight Schrute dwight.schrute@dundermifflin<span class="selector-class">.com</span></div><div class="line">Jim Halpert jim.halpert@dundermifflin<span class="selector-class">.com</span></div><div class="line">Pam Beesly pam.beesly@dundermifflin<span class="selector-class">.com</span></div><div class="line">Ryan Howard ryan.howard@dundermifflin<span class="selector-class">.com</span></div><div class="line">Stanley Hudson stanley.hudson@dundermifflin.com</div></pre></td></tr></table></figure>
+<h2 id="用户运行时输入"><a href="#用户运行时输入" class="headerlink" title="用户运行时输入"></a><span id="runtime-inputs">用户运行时输入</span></h2><p>现在我们知道如何接受命令行参数以及如何解析它们。但是如果我们想在运行时接受输入呢？名为<a href="https://github.com/SBoudrias/Inquirer.js" target="_blank" rel="external">Inquirer.js</a>的模块使我们能够接受各种类型的输入，从纯文本到密码到多选清单。</p>
+<p>对于此演示，我们将通过运行时输入接受发件人的电子邮件地址和名称。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div></pre></td><td class="code"><pre><div class="line">…</div><div class="line"><span class="keyword">let</span> questions = [</div><div class="line">  &#123;</div><div class="line">    <span class="attr">type</span> : <span class="string">"input"</span>,</div><div class="line">    <span class="attr">name</span> : <span class="string">"sender.email"</span>,</div><div class="line">    <span class="attr">message</span> : <span class="string">"Sender's email address - "</span></div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">type</span> : <span class="string">"input"</span>,</div><div class="line">    <span class="attr">name</span> : <span class="string">"sender.name"</span>,</div><div class="line">    <span class="attr">message</span> : <span class="string">"Sender's name - "</span></div><div class="line">  &#125;,</div><div class="line">  &#123;</div><div class="line">    <span class="attr">type</span> : <span class="string">"input"</span>,</div><div class="line">    <span class="attr">name</span> : <span class="string">"subject"</span>,</div><div class="line">    <span class="attr">message</span> : <span class="string">"Subject - "</span></div><div class="line">  &#125;</div><div class="line">];</div><div class="line"><span class="keyword">let</span> contactList = [];</div><div class="line"><span class="keyword">let</span> parse = csv.parse;</div><div class="line"><span class="keyword">let</span> stream = fs.createReadStream(program.list)</div><div class="line">    .pipe(parse(&#123; <span class="attr">delimiter</span> : <span class="string">","</span> &#125;));</div><div class="line"></div><div class="line">stream</div><div class="line">  .on(<span class="string">"error"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">console</span>.error(err.message);</div><div class="line">  &#125;)</div><div class="line">  .on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> name = data[<span class="number">0</span>] + <span class="string">" "</span> + data[<span class="number">1</span>];</div><div class="line">    <span class="keyword">let</span> email = data[<span class="number">2</span>];</div><div class="line">    contactList.push(&#123; <span class="attr">name</span> : name, <span class="attr">email</span> : email &#125;);</div><div class="line">  &#125;)</div><div class="line">  .on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    inquirer.prompt(questions).then(<span class="function"><span class="keyword">function</span> (<span class="params">answers</span>) </span>&#123;</div><div class="line">      <span class="built_in">console</span>.log(answers);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<p>首先，您将在上面的示例中注意到，我们创建了一个名为<code>contactList</code>的数组，我们用它来存储CSV文件中的数据。</p>
+<p>Inquirer.js附带一个名为<a href="https://github.com/SBoudrias/Inquirer.js#methods" target="_blank" rel="external">prompt</a>的方法，它接受一系列在运行时期间要提出的问题。在这种情况下，我们想知道发件人的姓名和电子邮件地址以及电子邮件的主题。我们创建了一个名为<code>questions</code>的数组，存储所有这些问题。该数组接受具有诸如<code>type</code>,从输入到密码到原始列表的任何属性的对象。您可以在<a href="https://github.com/SBoudrias/Inquirer.js/" target="_blank" rel="external">官方文档</a>中看到所有可用类型的列表。这里保存用户输入的密钥的<code>name</code>。该<code>prompt</code>方法返回一个promise对象，该对象最终调用成功和失败的回调链，当用户处理完所有问题时，用户的响应可以通过<code>answers</code>作为参数发送给<code>then</code>回调函数进行访问。下面就是你需要执行的代码:</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">$ node broadcast -l input/employees.csv</div><div class="line">? <span class="type">Sender</span><span class="symbol">'s</span> email address -  michael.scott<span class="meta">@dundermifflin</span>.com</div><div class="line">? <span class="type">Sender</span><span class="symbol">'s</span> name -  <span class="type">Micheal</span> <span class="type">Scott</span></div><div class="line">? <span class="type">Subject</span> - <span class="type">Greetings</span> from <span class="type">Dunder</span> <span class="type">Mifflin</span></div><div class="line">&#123; sender:</div><div class="line">   &#123; email: <span class="symbol">'michael</span>.scott<span class="meta">@dundermifflin</span>.com',</div><div class="line">     name: <span class="symbol">'Michael</span> <span class="type">Scott</span>' &#125;,</div><div class="line">  subject: <span class="symbol">'Greetings</span> from <span class="type">Dunder</span> <span class="type">Mifflin</span>' &#125;</div></pre></td></tr></table></figure>
+<h2 id="异步网络通信"><a href="#异步网络通信" class="headerlink" title="异步网络通信"></a><span id="async-communication">异步网络通信</span></h2><p>现在我们可以从CSV文件中读取收件人的数据，并通过命令行提示接受发件人的详细信息，现在是发送电子邮件的时候了。我们将使用SendGrid的API发送电子邮件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">…</div><div class="line"><span class="keyword">let</span> __sendEmail = <span class="function"><span class="keyword">function</span> (<span class="params">to, from, subject, callback</span>) </span>&#123;</div><div class="line">  <span class="keyword">let</span> template = <span class="string">"Wishing you a Merry Christmas and a "</span> +</div><div class="line">    <span class="string">"prosperous year ahead. P.S. Toby, I hate you."</span>;</div><div class="line">  <span class="keyword">let</span> helper = <span class="built_in">require</span>(<span class="string">'sendgrid'</span>).mail;</div><div class="line">  <span class="keyword">let</span> fromEmail = <span class="keyword">new</span> helper.Email(<span class="keyword">from</span>.email, <span class="keyword">from</span>.name);</div><div class="line">  <span class="keyword">let</span> toEmail = <span class="keyword">new</span> helper.Email(to.email, to.name);</div><div class="line">  <span class="keyword">let</span> body = <span class="keyword">new</span> helper.Content(<span class="string">"text/plain"</span>, template);</div><div class="line">  <span class="keyword">let</span> mail = <span class="keyword">new</span> helper.Mail(fromEmail, subject, toEmail, body);</div><div class="line"></div><div class="line">  <span class="keyword">let</span> sg = <span class="built_in">require</span>(<span class="string">'sendgrid'</span>)(process.env.SENDGRID_API_KEY);</div><div class="line">  <span class="keyword">let</span> request = sg.emptyRequest(&#123;</div><div class="line">    <span class="attr">method</span>: <span class="string">'POST'</span>,</div><div class="line">    <span class="attr">path</span>: <span class="string">'/v3/mail/send'</span>,</div><div class="line">    <span class="attr">body</span>: mail.toJSON(),</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  sg.API(request, <span class="function"><span class="keyword">function</span>(<span class="params">error, response</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (error) &#123; <span class="keyword">return</span> callback(error); &#125;</div><div class="line">    callback();</div><div class="line">  &#125;);</div><div class="line">&#125;;</div><div class="line"></div><div class="line">stream</div><div class="line">  .on(<span class="string">"error"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">console</span>.error(err.response);</div><div class="line">  &#125;)</div><div class="line">  .on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> name = data[<span class="number">0</span>] + <span class="string">" "</span> + data[<span class="number">1</span>];</div><div class="line">    <span class="keyword">let</span> email = data[<span class="number">2</span>];</div><div class="line">    contactList.push(&#123; <span class="attr">name</span> : name, <span class="attr">email</span> : email &#125;);</div><div class="line">  &#125;)</div><div class="line">  .on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    inquirer.prompt(questions).then(<span class="function"><span class="keyword">function</span> (<span class="params">ans</span>) </span>&#123;</div><div class="line">      <span class="keyword">async</span>.each(contactList, <span class="function"><span class="keyword">function</span> (<span class="params">recipient, fn</span>) </span>&#123;</div><div class="line">        __sendEmail(recipient, ans.sender, ans.subject, fn);</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<p>为了开始使用<a href="https://github.com/sendgrid/sendgrid-nodejs" target="_blank" rel="external">SendGrid</a>模块，我们需要获得一个API密钥.您可以从<a href="https://app.sendgrid.com/settings/api_keys" target="_blank" rel="external">SendGrid的仪表板</a>生成此API密钥（您需要创建一个帐户）。一旦API密钥生成，我们将把这个密钥存储在一个名为<code>SENDGRID_API_KEY</code>的密钥的环境变量中。您可以使用<code>process.env</code>在Node.js访问环境变量。</p>
+<p>在上面的代码中，我们使用SendGrid的API和<a href="http://caolan.github.io/async/docs.html" target="_blank" rel="external">Async</a>模块发送异步电子邮件。Async模块是最强大的Node.js模块之一。处理异步回调通常会导致<a href="http://stackoverflow.com/a/25098230/757449" target="_blank" rel="external">回调地狱</a>。有一点，当有这么多的异步调用，你最终在回调中写回调，通常没有结束。<br>JavaScript忍者处理错误变得更加复杂。异步模块可以帮助你克服回调地狱，提供方便的方法。如<code>each</code>、<code>series</code>、 <code>map</code>等。这些方法有助于我们编写更易于管理的代码，它改变了回调方法让其看起来像是同步行为。</p>
+<p>在这个例子中，我们通过一个异步请求发送一个电子邮件，而不是向SendGrid发送同步请求。根据响应，我们将发送后续请求。在Async模块中使用每个方法，我们迭代<code>contactList</code>数组并调用一个名为的函数<code>__sendEmail</code>。此函数接受收件人的详细信息、发件人的详细信息、主题行和异步调用的回调。<code>__sendEmail</code>使用SendGrid的API发送电子邮件; 您可以在<a href="https://sendgrid.com/docs/API_Reference/Web_API_v3/index.html" target="_blank" rel="external">官方文档</a>中了解有关SendGrid模块的更多信息。一旦发送了一封电子邮件，就会调用一个异步回调函数，它会从<code>contactList</code>数组中传递下一个对象。</p>
+<p>好了！使用Node.js，我们创建了一个接受CSV输入并发送电子邮件的命令行应用程序。</p>
+<h2 id="装饰输出"><a href="#装饰输出" class="headerlink" title="装饰输出"></a><span id="chalk">装饰输出</span></h2><p>现在我们的应用程序已准备好发送电子邮件了，我们来看看如何装饰输出，如错误和成功消息。为此，我们将使用<a href="https://github.com/chalk/chalk" target="_blank" rel="external">Chalk</a>模块，该模块用于设计命令行输入。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">…</div><div class="line">stream</div><div class="line">  .on(<span class="string">"error"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">    <span class="keyword">return</span> <span class="built_in">console</span>.error(err.response);</div><div class="line">  &#125;)</div><div class="line">  .on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">    <span class="keyword">let</span> name = data[<span class="number">0</span>] + <span class="string">" "</span> + data[<span class="number">1</span>];</div><div class="line">    <span class="keyword">let</span> email = data[<span class="number">2</span>];</div><div class="line">    contactList.push(&#123; <span class="attr">name</span> : name, <span class="attr">email</span> : email &#125;);</div><div class="line">  &#125;)</div><div class="line">  .on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    inquirer.prompt(questions).then(<span class="function"><span class="keyword">function</span> (<span class="params">ans</span>) </span>&#123;</div><div class="line">      <span class="keyword">async</span>.each(contactList, <span class="function"><span class="keyword">function</span> (<span class="params">recipient, fn</span>) </span>&#123;</div><div class="line">        __sendEmail(recipient, ans.sender, ans.subject, fn);</div><div class="line">      &#125;, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">        <span class="keyword">if</span> (err) &#123;</div><div class="line">          <span class="keyword">return</span> <span class="built_in">console</span>.error(chalk.red(err.message));</div><div class="line">        &#125;</div><div class="line">        <span class="built_in">console</span>.log(chalk.green(<span class="string">'Success'</span>));</div><div class="line">      &#125;);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div></pre></td></tr></table></figure>
+<p>在上面的代码段中，我们在发送电子邮件时添加了一个回调函数，当异步<code>each</code>循环由于运行时错误而被完成或中断时，该函数被调用。每当循环未完成时，它会发送一个<code>error</code>对象，我们以红色打印到控制台。否则，我们打印成功的消息为绿色。</p>
+<p>如果您通过Chalk的文档，您会发现许多选项来设计此输入，包括一系列控制台颜色（洋红色，黄色，蓝色等）下划线和粗体文本。</p>
+<h2 id="做一个shell命令"><a href="#做一个shell命令" class="headerlink" title="做一个shell命令"></a><span id="shell-command">做一个shell命令</span></h2><p>现在我们的工具已经完成了，现在是让它像一个常规shell命令一样可执行。首先，我们在顶部<code>bin broadcast.js</code>添加一个<a href="http://unix.stackexchange.com/a/87600" target="_blank" rel="external">shebang</a>，这将告诉shell如何执行这个脚本。</p>
+<figure class="highlight d"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#!/usr/bin/env node</span></div><div class="line"></div><div class="line"><span class="keyword">const</span> program = require(<span class="string">"commander"</span>);</div><div class="line"><span class="keyword">const</span> inquirer = require(<span class="string">"inquirer"</span>);</div><div class="line">…</div></pre></td></tr></table></figure>
+<p>现在，我们来配置<code>package.json</code>它使其可执行。</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">…</div><div class="line">  <span class="string">"description"</span>: <span class="string">"CLI utility to broadcast emails"</span>,</div><div class="line">  <span class="string">"main"</span>: <span class="string">"broadcast.js"</span>,</div><div class="line">  <span class="string">"bin"</span> : &#123;</div><div class="line">    <span class="string">"broadcast"</span> : "./<span class="type">broadcast.js</span><span class="string">"</span></div><div class="line">  &#125;</div><div class="line">…</div></pre></td></tr></table></figure>
+<p>我们添加了一个名为<code>bin</code>的新属性，其中提供了将从<code>broadcast.js</code>中执行的命令的名称。</p>
+<p>现在为最后一步。让我们在全局安装这个脚本，以便我们可以像常规shell命令那样开始执行它。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> npm install -g</span></div></pre></td></tr></table></figure>
+<p>执行此命令之前，请确保您处于同一个项目目录。一旦安装完成，您可以测试该命令。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> broadcast --help</span></div></pre></td></tr></table></figure>
+<p>这应该打印执行后我们获得的所有可用选项<code>node broadcast --help</code>。现在你准备把你的实用工具展示给世界了。</p>
+<p>要记住的一件事：在开发过程中，如果您只是<code>broadcast</code>使用给定的选项执行命令，则在项目中所做的任何更改都将不可见。如果运行<code>which broadcast</code>，您将意识到<code>broadcast</code>路径与您正在工作的项目路径不同。为了防止这种情况，只需<code>npm link</code>在你的项目文件夹中运行。这将自动建立可执行命令和项目目录之间的符号链接。此后，无论您在项目目录中所做的任何更改都将反映在broadcast命令中。</p>
+<h2 id="不止JavaScript"><a href="#不止JavaScript" class="headerlink" title="不止JavaScript"></a><span id="beyond-js">不止JavaScript</span></h2><p>这些CLI工具的实现范围远远超出了JavaScript项目。如果您有软件开发和IT经验，那么<a href="https://en.wikipedia.org/wiki/Bash_(Unix_shell" target="_blank" rel="external">Bash工具</a>)将成为您开发过程的一部分。从部署脚本到<a href="https://en.wikipedia.org/wiki/Cron" target="_blank" rel="external">cron作业</a>到备份，您可以使用Bash脚本自动执行任何操作。事实上，在<a href="https://www.docker.com/" target="_blank" rel="external">Docker</a>之前，<a href="https://www.chef.io/" target="_blank" rel="external">Chef</a>和<a href="https://puppet.com/" target="_blank" rel="external">Puppet</a>成为‘事实’上的基础设施管理标准，Bash是很有用的。但是，Bash脚本总是有一些问题。它们不容易适应开发工作流程。通常，我们使用Python到Java到JavaScript的任何东西，Bash都很少是核心发展的一部分。甚至在Bash编写一个简单的条件语句都需要经历无尽的文档和调试。</p>
+<p>然而，使用JavaScript，这个整个过程变得更加简单和高效。所有的工具自动成为跨平台。如果要运行本机shell命令<code>git</code>、<code>mongodb</code>或者<code>heroku</code>，您可以轻松地使用Node.js中的<a href="https://nodejs.org/api/child_process.html" target="_blank" rel="external">子进程</a>模块。这使您能够使用简单的JavaScript编写软件工具。</p>
+<p>希望本教程对您有帮助。如果您有任何问题，请将它们放在下面的评论部分或<a href="https://twitter.com/nihar_sawant" target="_blank" rel="external">联系我</a>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node-js/" rel="tag"># node.js</a>
+          
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/25/告诉你为啥要用 ES2017 的 Async 函数/" rel="next" title="告诉你为啥要用 ES2017 的 Async 函数">
+                <i class="fa fa-chevron-left"></i> 告诉你为啥要用 ES2017 的 Async 函数
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/20/为什么不应该通过尺寸来判断可触摸设备/" rel="prev" title="为什么不应该通过尺寸来判断可触摸设备">
+                为什么不应该通过尺寸来判断可触摸设备 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/04/10/使用 NodeJS 开发可交互的命令行程序/"
+           data-title="使用 NodeJS 开发可交互的命令行程序" data-url="http://yoursite.com/2017/04/10/使用 NodeJS 开发可交互的命令行程序/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/32269?v=3&s=460"
+               alt="陈辉" />
+          <p class="site-author-name" itemprop="name">陈辉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/catboy1006" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2686347841" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/chen-hui-32-51" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#“Hello-World”"><span class="nav-number">1.</span> <span class="nav-text">“Hello World”</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理命令行参数"><span class="nav-number">2.</span> <span class="nav-text">处理命令行参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#用户运行时输入"><span class="nav-number">3.</span> <span class="nav-text">用户运行时输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#异步网络通信"><span class="nav-number">4.</span> <span class="nav-text">异步网络通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#装饰输出"><span class="nav-number">5.</span> <span class="nav-text">装饰输出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#做一个shell命令"><span class="nav-number">6.</span> <span class="nav-text">做一个shell命令</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#不止JavaScript"><span class="nav-number">7.</span> <span class="nav-text">不止JavaScript</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈辉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"catboy1006"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

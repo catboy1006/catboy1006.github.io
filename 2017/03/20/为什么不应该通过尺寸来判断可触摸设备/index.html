@@ -1,0 +1,896 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="css,media," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+<meta name="description" content="原文地址 Touch Devices Should Not Be Judged By Their Size  前端工程师和网页设计师全都生活在多媒体设备中。 几个月前，红帽子UXD团队讨论如何设计企业应用程序在移动端环境上。我的两位非常有才华的同事,Sarah和Jenn,指出在移动端不能只依靠尺寸来判断触摸设备。  设想是容易的，如果我们都能达成一致，那么网页设计也不会那么难。  Jeremy">
+<meta name="keywords" content="css,media">
+<meta property="og:type" content="article">
+<meta property="og:title" content="为什么不应该通过尺寸来判断可触摸设备">
+<meta property="og:url" content="http://yoursite.com/2017/03/20/为什么不应该通过尺寸来判断可触摸设备/index.html">
+<meta property="og:site_name" content="陈辉的博客">
+<meta property="og:description" content="原文地址 Touch Devices Should Not Be Judged By Their Size  前端工程师和网页设计师全都生活在多媒体设备中。 几个月前，红帽子UXD团队讨论如何设计企业应用程序在移动端环境上。我的两位非常有才华的同事,Sarah和Jenn,指出在移动端不能只依靠尺寸来判断触摸设备。  设想是容易的，如果我们都能达成一致，那么网页设计也不会那么难。  Jeremy">
+<meta property="og:updated_time" content="2017-04-28T08:54:28.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="为什么不应该通过尺寸来判断可触摸设备">
+<meta name="twitter:description" content="原文地址 Touch Devices Should Not Be Judged By Their Size  前端工程师和网页设计师全都生活在多媒体设备中。 几个月前，红帽子UXD团队讨论如何设计企业应用程序在移动端环境上。我的两位非常有才华的同事,Sarah和Jenn,指出在移动端不能只依靠尺寸来判断触摸设备。  设想是容易的，如果我们都能达成一致，那么网页设计也不会那么难。  Jeremy">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/20/为什么不应该通过尺寸来判断可触摸设备/"/>
+
+
+
+
+
+  <title>为什么不应该通过尺寸来判断可触摸设备 | 陈辉的博客</title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">陈辉的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Long long ago...</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/20/为什么不应该通过尺寸来判断可触摸设备/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="陈辉">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://avatars1.githubusercontent.com/u/32269?v=3&s=460">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="陈辉的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">为什么不应该通过尺寸来判断可触摸设备</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-20T00:00:00+08:00">
+                2017-03-20
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端技术/" itemprop="url" rel="index">
+                    <span itemprop="name">前端技术</span>
+                  </a>
+                </span>
+
+                
+                
+                  ， 
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/前端技术/CSS/" itemprop="url" rel="index">
+                    <span itemprop="name">CSS</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/20/为什么不应该通过尺寸来判断可触摸设备/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/20/为什么不应该通过尺寸来判断可触摸设备/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>原文地址 <a href="https://css-tricks.com/touch-devices-not-judged-size/" target="_blank" rel="external">Touch Devices Should Not Be Judged By Their Size</a></p>
+</blockquote>
+<p>前端工程师和网页设计师全都生活在多媒体设备中。</p>
+<p>几个月前，<a href="https://twitter.com/RedHatUXD" target="_blank" rel="external">红帽子UXD</a>团队讨论如何设计企业应用程序在移动端环境上。我的两位非常有才华的同事,<a href="https://github.com/srambach" target="_blank" rel="external">Sarah</a>和<a href="https://github.com/jgiardino" target="_blank" rel="external">Jenn</a>,指出在移动端不能只依靠尺寸来判断触摸设备。</p>
+<blockquote>
+<p>设想是容易的，如果我们都能达成一致，那么网页设计也不会那么难。</p>
+<ul>
+<li><a href="https://adactio.com/" target="_blank" rel="external">Jeremy Keith</a>, <a href="https://resilientwebdesign.com/" target="_blank" rel="external">Resilient Web Design</a></li>
+</ul>
+</blockquote>
+<p>今天，对于已经复杂的交互设计和前端开发来说，又多了一项新的挑战。</p>
+<p>硬件行业创造了大量的触摸屏电视，真正的大型平板电脑（如iPad Pro），甚至是巨大的触摸式台式电脑（如新的不太好用的Surface Studio）。 这意味着我们不能再假设一个小视口是触摸屏，而且没有大的视口。 有时大屏幕触摸，要求用户使用他们的手指，小屏幕有触控笔。</p>
+<p>响应式的视口媒体查询很棒，但还不够。</p>
+<p>我们可以使用像Modernizr这样的JS工具来检测触摸屏，但CSS具有更加智能，更加神奇的功能。</p>
+<a id="more"></a>
+<p>###互动媒体功能</p>
+<p>感谢<a href="https://www.w3.org/Style/CSS/members.en.php3" target="_blank" rel="external">W3C CSS工作组</a>和CSS社区，我们有一个更简洁的解决方案。</p>
+<p>在<a href="https://drafts.csswg.org/mediaqueries/" target="_blank" rel="external">媒体查询4级工作草案</a>中，有一个<a href="https://drafts.csswg.org/mediaqueries/#mf-interaction" target="_blank" rel="external">交互媒体功能</a>的规范，包括三个定义：</p>
+<ul>
+<li>指点设备质量</li>
+<li>悬停能力</li>
+<li>罕见的互动能力</li>
+</ul>
+<p>这些提供了基于用户的指点设备的存在和准确性以及是否具有将数据悬停在元素上的能力来查询文档的能力。</p>
+<p>我们来仔细看看每一个：</p>
+<h3 id="指点设备质量：指针特性"><a href="#指点设备质量：指针特性" class="headerlink" title="指点设备质量：指针特性"></a>指点设备质量：指针特性</h3><blockquote>
+<p>指针媒体功能用于查询诸如鼠标之类的指示设备的存在和准确性。 如果设备具有多种输入机制，则指针媒体功能必须反映由用户代理确定的“主”输入机制的特征。“ - <a href="https://drafts.csswg.org/mediaqueries/#pointer" target="_blank" rel="external">W3C</a></p>
+</blockquote>
+<p>这里的关键词是指向设备的“准确性”。</p>
+<ul>
+<li><p>鼠标或绘图手写笔非常准确，值为fine。</p>
+</li>
+<li><p>手指或Kinect外围设备不是，值为coarse。</p>
+</li>
+</ul>
+<p>因此，我们可以将UI元素适应用户的指针功能。 如果用户的主输入机制是手指，这对于使命中区域更大是有用的。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* The primary input mechanism of the device includes a pointing device of limited accuracy. */</span></div><div class="line">@<span class="keyword">media</span> (pointer: coarse) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* The primary input mechanism of the device includes an accurate pointing device. */</span></div><div class="line">@<span class="keyword">media</span> (pointer: fine) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* The primary input mechanism of the device does not include a pointing device. */</span></div><div class="line">@<span class="keyword">media</span> (pointer: none) &#123; ... &#125;</div></pre></td></tr></table></figure>
+<p>这个示例用来自适应点击单选或复选的区域尺寸。</p>
+<p>###悬停能力：悬停功能</p>
+<p>悬停媒体功能用于查询用户将鼠标悬停在页面上的元素上。 如果设备具有多种输入机制，则悬停媒体功能必须反映用户代理确定的“主”输入机制的特征。“ - <a href="https://drafts.csswg.org/mediaqueries/#hover" target="_blank" rel="external">W3C</a></p>
+<p>需要重点注意的是，它只对主要的输入机制进行判断。 如果主输入机制无法悬停，但辅助输入可以，则查询将解析为<code>none</code>：</p>
+<blockquote>
+<p>例如，触摸屏长按被视为hover：none。“ - <a href="https://drafts.csswg.org/mediaqueries/#hover" target="_blank" rel="external">W3C</a></p>
+</blockquote>
+<ul>
+<li><p>触摸屏设备，其中主指针系统是手指，不能悬停，将取值为none。</p>
+</li>
+<li><p>主输入是鼠标并且可以轻松地悬停页面部分的设备取值为hover。</p>
+</li>
+</ul>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">/* Primary <span class="built_in">input</span> mechanism <span class="built_in">system</span> can </div><div class="line">   hover over elements with ease */</div><div class="line">@media (hover: hover) &#123; ... &#125;</div><div class="line"></div><div class="line">/* Primary <span class="built_in">input</span> mechanism cannot hover </div><div class="line">   at <span class="keyword">all</span> <span class="built_in">or</span> cannot conveniently hover </div><div class="line">   (<span class="keyword">e</span>.g., many mobile devices emulate hovering</div><div class="line">   when the user performs <span class="keyword">an</span> inconvenient long tap), </div><div class="line">   <span class="built_in">or</span> there <span class="keyword">is</span> <span class="keyword">no</span> primary pointing <span class="built_in">input</span> mechanism */</div><div class="line">@media (hover: none) &#123; ... &#125;</div></pre></td></tr></table></figure>
+<p>充分利用这个查询是一个下拉菜单。</p>
+<p>###不常用的交互功能：任何指针和任何悬停</p>
+<p>在触摸并具有鼠标或触控笔（如Microsoft Surface）的设备上，悬停和指针媒体查询仅作为评估输入的主要机制。</p>
+<p>正如<a href="https://twitter.com/WebReflection" target="_blank" rel="external">Andrea Giammarc</a>指出的，他的戴尔XPS 13“触摸值是fine，虽然它有一个触摸屏，主要因为输入机制是一个鼠标。</p>
+<blockquote>
+<p><a href="https://twitter.com/Real_CSS_Tricks" target="_blank" rel="external">@Real_CSS_Tricks</a> FYI我有一个触摸屏，该方法就像Chrome中的魔法一样失效。 😕</p>
+<ul>
+<li>Andrea Giammarchi（@WebReflection）2017年2月5日</li>
+</ul>
+</blockquote>
+<p>如果我们想要一个这样的设备采取<code>coarse</code>或<code>hover</code>的值，我们可以使用少有的交互能力。</p>
+<blockquote>
+<p>任何指针和悬浮的媒体功能与指针和悬停媒体功能相同，但它们对应于用户可用的所有指点设备的功能的并集。 如果不同的指点设备具有不同的特征，它们中的一个以上的值可以匹配。 如果所有的指针设备都不匹配相应的查询，或者根本没有指向设备，那么它们只匹配空。“ -<a href="https://drafts.csswg.org/mediaqueries/#any-input" target="_blank" rel="external">W3C</a></p>
+</blockquote>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* One or more available input mechanism(s) </span></div><div class="line">   can hover over elements with ease */</div><div class="line">@<span class="keyword">media</span> (any-hover: hover) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* One or more available input mechanism(s) can hover, </span></div><div class="line">   but not easily (e.g., many mobile devices emulate </div><div class="line">   hovering when the user performs a long tap) */</div><div class="line">@<span class="keyword">media</span> (any-hover: on-demand) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* One or more available input mechanism(s) cannot </span></div><div class="line">   hover (or there are no pointing input mechanisms) */</div><div class="line">@<span class="keyword">media</span> (any-hover: none) &#123; ... &#125;</div><div class="line"></div><div class="line"></div><div class="line"><span class="comment">/* At least one input mechanism of the device </span></div><div class="line">   includes a pointing device of limited accuracy. */</div><div class="line">@<span class="keyword">media</span> (any-pointer: coarse) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* At least one input mechanism of the device </span></div><div class="line">   includes an accurate pointing device. */</div><div class="line">@<span class="keyword">media</span> (any-pointer: fine) &#123; ... &#125;</div><div class="line"></div><div class="line"><span class="comment">/* The device does not include any pointing device. */</span></div><div class="line">@<span class="keyword">media</span> (any-pointer: none) &#123; ... &#125;</div></pre></td></tr></table></figure>
+<p>###设备的例子</p>
+<p>匹配指针和悬停组合的设备的典型示例：</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:left">pointer: coarse</th>
+<th>pointer: fine</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">hover: none</td>
+<td style="text-align:left">smartphones, touch screens</td>
+<td>stylus-based screens (Cintiq, Wacom, etc)</td>
+</tr>
+<tr>
+<td style="text-align:left">hover: hover</td>
+<td style="text-align:left">Nintendo Wii controller, Kinect</td>
+<td>mouse, touch pad</td>
+</tr>
+</tbody>
+</table>
+<p><a href="https://www.w3.org/TR/mediaqueries-4/#mf-interaction" target="_blank" rel="external">W3C</a></p>
+<p><a href="https://dev.opera.com/authors/patrick-lauke/" target="_blank" rel="external">Patrick H. Lauke</a>为每个交互设备类型写了一个很好的媒体查询<a href="https://dev.opera.com/articles/media-features/" target="_blank" rel="external">指南</a>。</p>
+<p>这真的很酷，对吧？我听到你说：浏览器支持怎么样？</p>
+<p>###浏览器并不是全都不支持！</p>
+<p>尽管这是一个工作草案，但它仍有很好的<a href="http://caniuse.com/#feat=css-media-interaction" target="_blank" rel="external">支持</a>。</p>
+<p>我的简单<a href="http://codepen.io/andresgalante/pen/bBEJKg?editors=0100" target="_blank" rel="external">测试</a>在Chrome，Chrome for Android，Safari，Edge，Opera，Samsung浏览器和Android浏览器上都取得了成功，但在FireFox，Opera Mini或IE上无效。</p>
+<iframe src="http://codepen.io/andresgalante/pen/bBEJKg" width="700px" height="500px" frameborder="0" scrolling="no"> </iframe>
+
+<p>FireFox和IE仅占<a href="https://www.netmarketshare.com/browser-market-share.aspx?qprid=0&amp;qpcustomd=1" target="_blank" rel="external">移动/平板浏览器市场份额的2％</a>以上。 我找不到有关触摸电视或其他不是手机或平板电脑的触摸屏设备的信息。</p>
+<p>我想我们已经准备好使用这个功能了，而且随着FireFox增加了对它的支持，<a href="https://www.microsoft.com/en-us/WindowsForBusiness/End-of-IE-support" target="_blank" rel="external">IE也不再维护旧版本</a>，我们将得到全力的支持。</p>
+<p>###“卡片选择”用例</p>
+<p>一个月前，我们致力于为新版本的PatternFly实现一个<a href="http://www.patternfly.org/pattern-library/content-views/card-view/#/api" target="_blank" rel="external">多选卡组件</a>，由我提供的开源设计<a href="https://www.patternfly.org/" target="_blank" rel="external">系统</a>。 这是使用悬停和指针媒体查询的完美案例。</p>
+<p>要选择一张卡片，当用户将鼠标悬停在其上时，会显示一个复选框。 如果用户无法将鼠标悬停在元素上，那么我们随时会显示该复选框。</p>
+<p>为了改善这种交互，如果主输入机制很粗糙，我们增加了复选框的命中面积。</p>
+<iframe src="http://codepen.io/andresgalante/pen/vgbLyq" width="700px" height="500px" frameborder="0" scrolling="no"> </iframe>
+
+<p>Firefox和IE将始终显示默认复选框。</p>
+<p>###尺寸不是一切</p>
+<p>设备应该由他们的能力来判断，因为最终是定义它们的是功能。</p>
+<p>这是一个未充分利用的功能，它打开了令人兴奋的新挑战的大门。 我迫不及待想看到我们作为一个社区，可以做什么。</p>
+<p>引用</p>
+<p>所有对代码评论的描述都来自<a href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media" target="_blank" rel="external">Mozilla Developer Network</a>。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/css/" rel="tag"># css</a>
+          
+            <a href="/tags/media/" rel="tag"># media</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/04/10/使用 NodeJS 开发可交互的命令行程序/" rel="next" title="使用 NodeJS 开发可交互的命令行程序">
+                <i class="fa fa-chevron-left"></i> 使用 NodeJS 开发可交互的命令行程序
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/30/es6/" rel="prev" title="ECMAScript 6: 在下一个javascript版本中有哪些新东西">
+                ECMAScript 6: 在下一个javascript版本中有哪些新东西 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/20/为什么不应该通过尺寸来判断可触摸设备/"
+           data-title="为什么不应该通过尺寸来判断可触摸设备" data-url="http://yoursite.com/2017/03/20/为什么不应该通过尺寸来判断可触摸设备/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://avatars1.githubusercontent.com/u/32269?v=3&s=460"
+               alt="陈辉" />
+          <p class="site-author-name" itemprop="name">陈辉</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">分类</span>
+              
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/catboy1006" target="_blank" title="github">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  github
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/2686347841" target="_blank" title="weibo">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  weibo
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/chen-hui-32-51" target="_blank" title="zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  zhihu
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              Links
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#指点设备质量：指针特性"><span class="nav-number">1.</span> <span class="nav-text">指点设备质量：指针特性</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">陈辉</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"catboy1006"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
