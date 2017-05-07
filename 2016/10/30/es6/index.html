@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/30/es6/index.html">
 <meta property="og:site_name" content="陈辉的博客">
 <meta property="og:description" content="简介你可能已经听到关于ECMAScript6 (或者ES6), 作为下一个JavaScript的版本, 它也有一些很棒的新特性。这些特性有不同程度的复杂性，并在脚本和应用程序非常有用。在这篇文章里，我们将会讨论哪些经过精心挑选并且在你每天javascript coding 中使用的功能。请注意，现在浏览器会很好的支持这些新的ES6功能，也许支持的情况会有所不同。如果你需要支持缺少许多ES6功能的浏">
-<meta property="og:updated_time" content="2017-04-28T08:55:03.000Z">
+<meta property="og:updated_time" content="2017-04-28T09:00:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ECMAScript 6: 在下一个javascript版本中有哪些新东西">
 <meta name="twitter:description" content="简介你可能已经听到关于ECMAScript6 (或者ES6), 作为下一个JavaScript的版本, 它也有一些很棒的新特性。这些特性有不同程度的复杂性，并在脚本和应用程序非常有用。在这篇文章里，我们将会讨论哪些经过精心挑选并且在你每天javascript coding 中使用的功能。请注意，现在浏览器会很好的支持这些新的ES6功能，也许支持的情况会有所不同。如果你需要支持缺少许多ES6功能的浏">
@@ -47,7 +47,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="null" class="js-avatar">
+			<img src="https://avatars0.githubusercontent.com/u/6365803?v=3&amp;s=460" class="js-avatar">
 		</a>
 		<hgroup>
 		  <h1 class="header-author"><a href="/">陈辉</a></h1>
@@ -107,7 +107,7 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="null" class="js-avatar">
+				<img src="https://avatars0.githubusercontent.com/u/6365803?v=3&amp;s=460" class="js-avatar">
 			</div>
 			<hgroup>
 			  <h1 class="header-author js-header-author">陈辉</h1>
@@ -301,33 +301,20 @@ let z = [1, 2, 3]; // Array literal
 <ul>
 <li><code>find</code>返回符合回调函数里为<code>true</code>的第一个元素</li>
 <li><code>findIndex</code>返回符合回调函数里为<code>true</code>的第一个索引值</li>
-<li><p><code>fill</code> “覆盖”数组的给定参数的元素</p>
-<p>  [5, 1, 10, 8].find(n =&gt; n === 10) // 10</p>
-<p>  [5, 1, 10, 8].findIndex(n =&gt; n === 10) // 2</p>
-<p>  [0, 0, 0].fill(7) // [7, 7, 7]<br>  [0, 0, 0, 0, 0].fill(7, 1, 3) // [0, 7, 7, 7, 0]</p>
-</li>
+<li><code>fill</code> “覆盖”数组的给定参数的元素</li>
 </ul>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[<span class="number">5</span>, <span class="number">1</span>, <span class="number">10</span>, <span class="number">8</span>].find(n =&gt; n === <span class="number">10</span>) <span class="comment">// 10</span></div><div class="line"></div><div class="line">[<span class="number">5</span>, <span class="number">1</span>, <span class="number">10</span>, <span class="number">8</span>].findIndex(n =&gt; n === <span class="number">10</span>) <span class="comment">// 2</span></div><div class="line"></div><div class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>].fill(<span class="number">7</span>) <span class="comment">// [7, 7, 7]</span></div><div class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>].fill(<span class="number">7</span>, <span class="number">1</span>, <span class="number">3</span>) <span class="comment">// [0, 7, 7, 7, 0]</span></div></pre></td></tr></table></figure>
 <h2 id="Math"><a href="#Math" class="headerlink" title="Math"></a>Math</h2><p>一些新的方法已经加入到<code>Math</code>对象中.</p>
 <ul>
 <li><code>Math.sign</code>返回数字的标志比如<code>1</code>,<code>-1</code>或<code>0</code>.</li>
 <li><code>Math.trunc</code>返回整数值.</li>
-<li><p><code>Math.cbrt</code>返回立方根的值.</p>
-<p>  Math.sign(5); // 1<br>  Math.sign(-9); // -1</p>
-<p>  Math.trunc(5.9); // 5<br>  Math.trunc(5.123); // 5</p>
-<p>  Math.cbrt(64); // 4</p>
-</li>
+<li><code>Math.cbrt</code>返回立方根的值.</li>
 </ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">Math</span>.sign(<span class="number">5</span>); <span class="comment">// 1</span></div><div class="line"><span class="built_in">Math</span>.sign(<span class="number">-9</span>); <span class="comment">// -1</span></div><div class="line"></div><div class="line"><span class="built_in">Math</span>.trunc(<span class="number">5.9</span>); <span class="comment">// 5</span></div><div class="line"><span class="built_in">Math</span>.trunc(<span class="number">5.123</span>); <span class="comment">// 5</span></div><div class="line"></div><div class="line"><span class="built_in">Math</span>.cbrt(<span class="number">64</span>); <span class="comment">// 4</span></div></pre></td></tr></table></figure>
 <p>如果你想学到更多关于数字的运算方法<a href="http://www.2ality.com/2015/04/numbers-math-es6.html" target="_blank" rel="external">请点击</a></p>
 <h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><p>操作符<code>...</code>是一种非常方便的语法在特定的地方扩展数组中的元素，就像参数在函数中的调用，展示一些例子可能是最好的方式来证明他们是多么的有用.<br>首先，让我们看看怎么在另一个数组中扩充数组中的元素：</p>
-<pre><code>let values = [1, 2, 4];
-let some = [...values, 8]; // [1, 2, 4, 8]
-let more = [...values, 8, ...values]; // [1, 2, 4, 8, 1, 2, 4]
-
-// ES5 equivalent:
-let values = [1, 2, 4];
-// Iterate, push, sweat, repeat...
-// Iterate, push, sweat, repeat...
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20values%20%3D%20%5B1%2C%202%2C%204%5D%3B%0Alet%20some%20%3D%20%5B...values%2C%208%5D%3B%0Alet%20more%20%3D%20%5B...values%2C%208%2C%20...values%5D%3B%0Aconsole.log(some)%3B%0Aconsole.log(more)%3B" target="_blank" rel="external">运行代码</a></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">let values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>];</div><div class="line">let some = [...values, <span class="number">8</span>]; <span class="comment">// [1, 2, 4, 8]</span></div><div class="line">let more = [...values, <span class="number">8</span>, ...values]; <span class="comment">// [1, 2, 4, 8, 1, 2, 4]</span></div><div class="line"></div><div class="line"><span class="comment">// ES5 equivalent:</span></div><div class="line">let values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>];</div><div class="line"><span class="comment">// Iterate, push, sweat, repeat...</span></div><div class="line"><span class="comment">// Iterate, push, sweat, repeat...</span></div></pre></td></tr></table></figure>
+<p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20values%20%3D%20%5B1%2C%202%2C%204%5D%3B%0Alet%20some%20%3D%20%5B...values%2C%208%5D%3B%0Alet%20more%20%3D%20%5B...values%2C%208%2C%20...values%5D%3B%0Aconsole.log(some)%3B%0Aconsole.log(more)%3B" target="_blank" rel="external">运行代码</a></p>
 <p>当用参数调用函数的时候操作符也很有用</p>
 <pre><code>let values = [1, 2, 4];
 
@@ -668,14 +655,6 @@ myCar instanceof Vehicle; //true
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">css</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">media</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">JavaScript</a>
               </li>
              
@@ -685,6 +664,14 @@ myCar instanceof Vehicle; //true
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">node.js</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">css</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">media</a>
               </li>
             
             <div class="clearfix"></div>
