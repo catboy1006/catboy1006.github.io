@@ -97,7 +97,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/10/30/es6/index.html">
 <meta property="og:site_name" content="陈辉的博客">
 <meta property="og:description" content="简介你可能已经听到关于ECMAScript6 (或者ES6), 作为下一个JavaScript的版本, 它也有一些很棒的新特性。这些特性有不同程度的复杂性，并在脚本和应用程序非常有用。在这篇文章里，我们将会讨论哪些经过精心挑选并且在你每天javascript coding 中使用的功能。请注意，现在浏览器会很好的支持这些新的ES6功能，也许支持的情况会有所不同。如果你需要支持缺少许多ES6功能的浏">
-<meta property="og:updated_time" content="2017-04-28T09:55:30.000Z">
+<meta property="og:updated_time" content="2017-05-07T04:28:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ECMAScript 6: 在下一个javascript版本中有哪些新东西">
 <meta name="twitter:description" content="简介你可能已经听到关于ECMAScript6 (或者ES6), 作为下一个JavaScript的版本, 它也有一些很棒的新特性。这些特性有不同程度的复杂性，并在脚本和应用程序非常有用。在这篇文章里，我们将会讨论哪些经过精心挑选并且在你每天javascript coding 中使用的功能。请注意，现在浏览器会很好的支持这些新的ES6功能，也许支持的情况会有所不同。如果你需要支持缺少许多ES6功能的浏">
@@ -329,124 +329,51 @@
       
         <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>你可能已经听到关于<strong>ECMAScript6</strong> (或者ES6), 作为下一个JavaScript的版本, 它也有一些很棒的新特性。这些特性有不同程度的复杂性，并在脚本和应用程序非常有用。在这篇文章里，我们将会讨论哪些经过精心挑选并且在你每天javascript coding 中使用的功能。<br>请注意，现在浏览器会很好的支持这些新的ES6功能，也许支持的情况会有所不同。如果你需要支持缺少许多ES6功能的浏览器，我会寻找解决方案，今天可以帮助你开始使用ES6。<br>大部分的代码都带有一个外部的“运行代码”链接，这样就可以看到代码并使用它。</p>
 <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p><strong> let </strong><br>你已经使用过<code>var</code> 声明变量。现在可以更好的使用<code>let</code>。细小之处在于作用域。<code>var</code>结果取决于函数作用域，<code>let</code>的作用域范围则只是它所在的代码块。</p>
-<pre><code>if(true) {
-    let x = 1;
-}
-console.log(x); // undefined
-</code></pre><p>这可以使你的代码更加干净，从而减少更多的变量。就拿这个经典的数组循环来说：</p>
-<pre><code>for(let i = 0, l = list.length; i &lt; l; i++) {
-   // do something with list[i]
-}
-
-console.log(i); // undefined
-</code></pre><a id="more"></a>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="literal">true</span>) &#123;</div><div class="line">    <span class="keyword">let</span> x = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(x); <span class="comment">// undefined</span></div></pre></td></tr></table></figure>
+<p>这可以使你的代码更加干净，从而减少更多的变量。就拿这个经典的数组循环来说：</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>, l = <span class="built_in">list</span>.length; i &lt; l; i++) &#123;</div><div class="line">   <span class="comment">// do something with list[i]</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(i); <span class="comment">// undefined</span></div></pre></td></tr></table></figure>
+<a id="more"></a>
 <p>通常，我们这么使用的时候，例如，在循环中定义变量<code>i</code>和在循环外定义结果都是一样。但用<code>let</code>，你可以放心地再次声明<code>i</code>，因为它只能在自己的块级作用域内定义和使用。</p>
 <p><strong> const </strong><br>还有另一种方式来声明块级作用域的变量。这就是<code>const</code>，你只需要声明一个只读参考值。必须直接赋值一个变量。如果你试图改变变量，或者如果你没有直接给变量赋值，那么你会得到一个错误：</p>
-<pre><code>const MY_CONSTANT = 1;
-MY_CONSTANT = 2 // Error
-const SOME_CONST; // Error
-</code></pre><p>请注意，您仍然可以更改对象属性或数组内容：</p>
-<pre><code>const MY_OBJECT = {some: 1};
-MY_OBJECT.some = &apos;body&apos;; // Cool
-</code></pre><h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>箭头函数是一个添加到JavaScript中非常棒的功能。他们缩减了代码。在这篇文章中我们很早就引进箭头函数，这样我们就可以在后面的例子中使用它们。下面的代码片段显示一个箭头函数，和我们所熟悉的ES5相同功能的代码：</p>
-<pre><code>let books = [{title: &apos;X&apos;, price: 10}, {title: &apos;Y&apos;, price: 15}];
-
-let titles = books.map( item =&gt; item.title  );
-
-// ES5 equivalent:
-var titles = books.map(function(item) {
-                return item.title;
-             });
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20books%20%3D%20%5B%7Btitle%3A%20&#39;X&#39;%2C%20price%3A%2010%7D%2C%20%7Btitle%3A%20&#39;Y&#39;%2C%20price%3A%2015%7D%5D%3B%0A%0Alet%20titles%20%3D%20books.map(%20item%20%3D%3E%20item.title%20)%3B%0A" target="_blank" rel="external">运行代码</a></p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> MY_CONSTANT = <span class="number">1</span>;</div><div class="line">MY_CONSTANT = <span class="number">2</span> <span class="comment">// Error</span></div><div class="line"><span class="keyword">const</span> SOME_CONST; <span class="comment">// Error</span></div></pre></td></tr></table></figure>
+<p>请注意，您仍然可以更改对象属性或数组内容：</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">const</span> MY_OBJECT = &#123;some: <span class="number">1</span>&#125;;</div><div class="line">MY_OBJECT.some = <span class="string">'body'</span>; <span class="comment">// Cool</span></div></pre></td></tr></table></figure>
+<h2 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h2><p>箭头函数是一个添加到JavaScript中非常棒的功能。他们缩减了代码。在这篇文章中我们很早就引进箭头函数，这样我们就可以在后面的例子中使用它们。下面的代码片段显示一个箭头函数，和我们所熟悉的ES5相同功能的代码：</p>
+<figure class="highlight xquery"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> books = [&#123;title: <span class="string">'X'</span>, price: <span class="number">10</span>&#125;, &#123;title: <span class="string">'Y'</span>, price: <span class="number">15</span>&#125;];</div><div class="line"></div><div class="line"><span class="keyword">let</span> titles = books.<span class="keyword">map</span>( <span class="literal">item</span> =&gt; <span class="literal">item</span>.title  );</div><div class="line"></div><div class="line">// ES5 equivalent:</div><div class="line">var titles = books.<span class="keyword">map</span>(<span class="keyword">function</span>(<span class="literal">item</span>) &#123;</div><div class="line">                return item.title;</div><div class="line">             &#125;);</div></pre></td></tr></table></figure>
+<p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20books%20%3D%20%5B%7Btitle%3A%20&#39;X&#39;%2C%20price%3A%2010%7D%2C%20%7Btitle%3A%20&#39;Y&#39;%2C%20price%3A%2015%7D%5D%3B%0A%0Alet%20titles%20%3D%20books.map(%20item%20%3D%3E%20item.title%20)%3B%0A" target="_blank" rel="external">运行代码</a></p>
 <p>如果我们看一下箭头函数的语法，这里并没有<code>function</code>关键字，剩下的0或者其他的参数、”箭头”(<code>=&gt;</code>)和函数表达式，<code>return</code>则被隐性添加进去。<br>如果有0个或者多个参数，必须添加括号:</p>
-<pre><code>// No arguments
-books.map( () =&gt; 1  ); // [1, 1]
-
-// Multiple arguments
-[1,2].map( (n, index) =&gt; n * index  ); // [0, 2]
-</code></pre><p>如果你需要更多的逻辑和空格，把函数表达式放到<code>{...}</code>块里：</p>
-<pre><code>let result = [1, 2, 3, 4, 5].map( n =&gt; {
-        n = n % 3;
-        return n;
-    });
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20result%20%3D%20%5B1%2C%202%2C%203%2C%204%2C%205%5D.map(%20n%20%3D%3E%20%7B%0A%20%20%20%20n%20%3D%20n%20%25%203%3B%0A%20%20%20%20return%20n%3B%0A%7D)%3B" target="_blank" rel="external">运行代码</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="comment">// No arguments</span></div><div class="line">books.map( <span class="function"><span class="params">()</span> =&gt;</span> <span class="number">1</span>  ); <span class="comment">// [1, 1]</span></div><div class="line"></div><div class="line"><span class="comment">// Multiple arguments</span></div><div class="line">[<span class="number">1</span>,<span class="number">2</span>].map( <span class="function">(<span class="params">n, index</span>) =&gt;</span> n * index  ); <span class="comment">// [0, 2]</span></div></pre></td></tr></table></figure>
+<p>如果你需要更多的逻辑和空格，把函数表达式放到<code>{...}</code>块里：</p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let result = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>].map( n =&gt; &#123;</div><div class="line">        n = n % <span class="number">3</span>;</div><div class="line">        return n;</div><div class="line">    &#125;);</div></pre></td></tr></table></figure>
+<p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20result%20%3D%20%5B1%2C%202%2C%203%2C%204%2C%205%5D.map(%20n%20%3D%3E%20%7B%0A%20%20%20%20n%20%3D%20n%20%25%203%3B%0A%20%20%20%20return%20n%3B%0A%7D)%3B" target="_blank" rel="external">运行代码</a></p>
 <p>不仅箭头功能意味着更少的字符输入，他们也和常规的函数表现不同。箭头函数表达式在执行上下文中指定了<code>this</code>和<code>arguments</code>。这意味着你可以摆脱像<code>var that = this</code>这样难看的语句，你将不需要将函数绑定到正确的上下文中。下面是一个例子（注意<code>this.title</code>与<code>that.title</code>在ES5版）：</p>
-<pre><code>let book = {
-    title: &apos;X&apos;,
-    sellers: [&apos;A&apos;, &apos;B&apos;],
-    printSellers() {
-        this.sellers.forEach(seller =&gt; console.log(seller + &apos; sells &apos; + this.title));
-    }
-}
-
-// ES5 equivalent:
-var book = {
-    title: &apos;X&apos;,
-    sellers: [&apos;A&apos;, &apos;B&apos;],
-    printSellers: function() {
-        var that = this;
-        this.sellers.forEach(function(seller) {
-            console.log(seller + &apos; sells &apos; + that.title)
-        })
-    }
-}
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20book%20%3D%20%7B%0A%20%20%20%20title%3A%20&#39;X&#39;%2C%0A%20%20%20%20sellers%3A%20%5B&#39;A&#39;%2C%20&#39;B&#39;%5D%2C%0A%20%20%20%20printSellers()%20%7B%0A%20%20%20%20%20%20%20%20this.sellers.forEach(seller%20%3D%3E%20console.log(seller%20%2B%20&#39;%20sells%20&#39;%20%2B%20this.title))%3B%0A%20%20%20%20%7D%0A%7D" target="_blank" rel="external">运行代码</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> book = &#123;</div><div class="line">    <span class="attr">title</span>: <span class="string">'X'</span>,</div><div class="line">    <span class="attr">sellers</span>: [<span class="string">'A'</span>, <span class="string">'B'</span>],</div><div class="line">    printSellers() &#123;</div><div class="line">        <span class="keyword">this</span>.sellers.forEach(<span class="function"><span class="params">seller</span> =&gt;</span> <span class="built_in">console</span>.log(seller + <span class="string">' sells '</span> + <span class="keyword">this</span>.title));</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// ES5 equivalent:</span></div><div class="line"><span class="keyword">var</span> book = &#123;</div><div class="line">    <span class="attr">title</span>: <span class="string">'X'</span>,</div><div class="line">    <span class="attr">sellers</span>: [<span class="string">'A'</span>, <span class="string">'B'</span>],</div><div class="line">    <span class="attr">printSellers</span>: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="keyword">var</span> that = <span class="keyword">this</span>;</div><div class="line">        <span class="keyword">this</span>.sellers.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">seller</span>) </span>&#123;</div><div class="line">            <span class="built_in">console</span>.log(seller + <span class="string">' sells '</span> + that.title)</div><div class="line">        &#125;)</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20book%20%3D%20%7B%0A%20%20%20%20title%3A%20&#39;X&#39;%2C%0A%20%20%20%20sellers%3A%20%5B&#39;A&#39;%2C%20&#39;B&#39;%5D%2C%0A%20%20%20%20printSellers()%20%7B%0A%20%20%20%20%20%20%20%20this.sellers.forEach(seller%20%3D%3E%20console.log(seller%20%2B%20&#39;%20sells%20&#39;%20%2B%20this.title))%3B%0A%20%20%20%20%7D%0A%7D" target="_blank" rel="external">运行代码</a></p>
 <h2 id="String"><a href="#String" class="headerlink" title="String"></a>String</h2><p>方法</p>
 <p>一些便利的方法已经被添加到<code>String</code>原型中,它们中的大部分已经删除了通过用<code>indexOf()</code>方法实现了相同的功能:</p>
-<pre><code>&apos;my string&apos;.startsWith(&apos;my&apos;); //true
-&apos;my string&apos;.endsWith(&apos;my&apos;); // false
-&apos;my string&apos;.includes(&apos;str&apos;); // true
-</code></pre><p>简单而有用的，另一个方便的方法已经被添加到作为创建一个重复的字符串中:</p>
-<pre><code>&apos;my &apos;.repeat(3); // &apos;my my my &apos;
-</code></pre><p>模板文字提供一个清洁的方式来创建字符串，并执行字符串插值。您可能已经熟悉了这种 语法;它是基于美元符号和花括号<code>$ {..}</code>。模板文字是由反引号括起来。这里有一个快速演示：</p>
-<pre><code>let name = &apos;John&apos;,
-    apples = 5,
-    pears = 7,
-    bananas = function() { return 3;  }
-
-    console.log(`This is ${name}.`);
-
-    console.log(`He carries ${apples} apples, ${pears} pears, and ${bananas()} bananas.`);
-
-    // ES5 equivalent:
-    console.log(&apos;He carries &apos; + apples + &apos; apples, &apos; + pears + &apos; pears, and &apos; + bananas() +&apos; bananas.&apos;);
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20name%20%3D%20&#39;John&#39;%2C%0A%20%20%20%20apples%20%3D%205%2C%0A%20%20%20%20pears%20%3D%207%2C%0A%20%20%20%20bananas%20%3D%20function()%20%7B%20return%203%3B%20%7D%0A%0Aconsole.log(%60This%20is%20%24%7Bname%7D.%60)%3B%0A%0Aconsole.log(%60He%20carries%20%24%7Bapples%7D%20apples%2C%20%24%7Bpears%7D%20pears%2C%20and%20%24%7Bbananas()%7D%20bananas.%60)%3B%0A" target="_blank" rel="external">运行代码</a></p>
+<figure class="highlight vhdl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">'my</span> <span class="built_in">string</span>'.startsWith(<span class="symbol">'my</span>'); //<span class="literal">true</span></div><div class="line"><span class="symbol">'my</span> <span class="built_in">string</span>'.endsWith(<span class="symbol">'my</span>'); // <span class="literal">false</span></div><div class="line"><span class="symbol">'my</span> <span class="built_in">string</span>'.includes(<span class="symbol">'str</span>'); // <span class="literal">true</span></div></pre></td></tr></table></figure>
+<p>简单而有用的，另一个方便的方法已经被添加到作为创建一个重复的字符串中:</p>
+<figure class="highlight gcode"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">'my '</span>.<span class="keyword">repeat</span><span class="comment">(3)</span>; <span class="comment">// 'my my my '</span></div></pre></td></tr></table></figure>
+<p>模板文字提供一个清洁的方式来创建字符串，并执行字符串插值。您可能已经熟悉了这种 语法;它是基于美元符号和花括号<code>$ {..}</code>。模板文字是由反引号括起来。这里有一个快速演示：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> name = <span class="string">'John'</span>,</div><div class="line">    apples = <span class="number">5</span>,</div><div class="line">    pears = <span class="number">7</span>,</div><div class="line">    bananas = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="number">3</span>;  &#125;</div><div class="line"></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`This is <span class="subst">$&#123;name&#125;</span>.`</span>);</div><div class="line"></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">`He carries <span class="subst">$&#123;apples&#125;</span> apples, <span class="subst">$&#123;pears&#125;</span> pears, and <span class="subst">$&#123;bananas()&#125;</span> bananas.`</span>);</div><div class="line"></div><div class="line">    <span class="comment">// ES5 equivalent:</span></div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'He carries '</span> + apples + <span class="string">' apples, '</span> + pears + <span class="string">' pears, and '</span> + bananas() +<span class="string">' bananas.'</span>);</div></pre></td></tr></table></figure>
+<p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20name%20%3D%20&#39;John&#39;%2C%0A%20%20%20%20apples%20%3D%205%2C%0A%20%20%20%20pears%20%3D%207%2C%0A%20%20%20%20bananas%20%3D%20function()%20%7B%20return%203%3B%20%7D%0A%0Aconsole.log(%60This%20is%20%24%7Bname%7D.%60)%3B%0A%0Aconsole.log(%60He%20carries%20%24%7Bapples%7D%20apples%2C%20%24%7Bpears%7D%20pears%2C%20and%20%24%7Bbananas()%7D%20bananas.%60)%3B%0A" target="_blank" rel="external">运行代码</a></p>
 <p>在上面的形式，相对于ES5，它们仅仅是为了方便字符串连接。然而，模板文本可以也可用于多行的字符串。请记住，空格也是字符串的一部分：</p>
-<pre><code>let x = `1...
-2...
-3 lines long!`; // Yay
-
-// ES5 equivalents:
-var x = &quot;1...\n&quot; + 
-&quot;2...\n&quot; +
-&quot;3 lines long!&quot;;
-
-var x = &quot;1...\n2...\n3 lines long!&quot;;
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20x%20%3D%20%601...%0A2...%0A3%20lines%20long!%60%3B" target="_blank" rel="external">运行代码</a></p>
+<figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">let x = `<span class="number">1.</span>..</div><div class="line"><span class="number">2.</span>..</div><div class="line"><span class="number">3</span> lines long!`; <span class="comment">// Yay</span></div><div class="line"></div><div class="line"><span class="comment">// ES5 equivalents:</span></div><div class="line">var x = <span class="string">"1...<span class="subst">\n</span>"</span> + </div><div class="line"><span class="string">"2...<span class="subst">\n</span>"</span> +</div><div class="line"><span class="string">"3 lines long!"</span>;</div><div class="line"></div><div class="line">var x = <span class="string">"1...<span class="subst">\n</span>2...<span class="subst">\n</span>3 lines long!"</span>;</div></pre></td></tr></table></figure>
+<p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20x%20%3D%20%601...%0A2...%0A3%20lines%20long!%60%3B" target="_blank" rel="external">运行代码</a></p>
 <h2 id="Array"><a href="#Array" class="headerlink" title="Array"></a>Array</h2><p>数组对象现在有一些新的静态类的方法，以及数组原型的新方法。<br>首先，<code>Array.from</code>创建一个从类数组和继承对象的<code>Array</code>实例。类数组的例子包括：</p>
 <ul>
 <li><code>arguments</code> 在函数中；</li>
 <li><code>nodeList</code>通过<code>document.getElementsByTagName()</code>返回；</li>
 <li>新的<code>Map</code> 和<code>Set</code> 数据结构；</li>
 </ul>
-<pre><code>let itemElements = document.querySelectorAll(&apos;.items&apos;);
-let items = Array.from(itemElements);
-items.forEach(function(element) {
-    console.log(element.nodeType)
-});
-
-// A workaround often used in ES5:
-let items = Array.prototype.slice.call(itemElements);
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20itemElements%20%3D%20document.querySelectorAll(&#39;div&#39;)%3B%0Alet%20items%20%3D%20Array.from(itemElements)%3B%0Aitems.forEach(function(element)%20%7B%0A%20%20%20%20console.log(element.nodeType)%0A%7D)%3B%0A" target="_blank" rel="external">运行代码</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">let</span> itemElements = <span class="built_in">document</span>.querySelectorAll(<span class="string">'.items'</span>);</div><div class="line"><span class="keyword">let</span> items = <span class="built_in">Array</span>.from(itemElements);</div><div class="line">items.forEach(<span class="function"><span class="keyword">function</span>(<span class="params">element</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(element.nodeType)</div><div class="line">&#125;);</div><div class="line"></div><div class="line"><span class="comment">// A workaround often used in ES5:</span></div><div class="line"><span class="keyword">let</span> items = <span class="built_in">Array</span>.prototype.slice.call(itemElements);</div></pre></td></tr></table></figure>
+<p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20itemElements%20%3D%20document.querySelectorAll(&#39;div&#39;)%3B%0Alet%20items%20%3D%20Array.from(itemElements)%3B%0Aitems.forEach(function(element)%20%7B%0A%20%20%20%20console.log(element.nodeType)%0A%7D)%3B%0A" target="_blank" rel="external">运行代码</a></p>
 <p>在上面的例子中你能看到<code>items</code>数组有<code>forEach</code>方法，这些并不是<code>itemElements</code>集合中可以用的.<br>一个有趣的属性在<code>Array.form</code>中是第二个参数选项<code>mapFunction</code>,它允许你创建新的映射数组在单个调用方法中</p>
-<pre><code>let navElements = document.querySelectorAll(&apos;nav li&apos;);
-let navTitles = Array.from(navElements, el =&gt; el.textContent)
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20navElements%20%3D%20document.querySelectorAll(&#39;nav%20li&#39;)%3B%0Alet%20navTitles%20%3D%20Array.from(navElements%2C%20el%20%3D%3E%20el.textContent)%3B%0Aconsole.log(navTitles.join(&#39;&#39;))%3B" target="_blank" rel="external">运行代码</a></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> navElements = <span class="built_in">document</span>.querySelectorAll(<span class="string">'nav li'</span>);</div><div class="line"><span class="keyword">let</span> navTitles = <span class="built_in">Array</span>.from(navElements, <span class="function"><span class="params">el</span> =&gt;</span> el.textContent)</div></pre></td></tr></table></figure>
+<p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20navElements%20%3D%20document.querySelectorAll(&#39;nav%20li&#39;)%3B%0Alet%20navTitles%20%3D%20Array.from(navElements%2C%20el%20%3D%3E%20el.textContent)%3B%0Aconsole.log(navTitles.join(&#39;&#39;))%3B" target="_blank" rel="external">运行代码</a></p>
 <p>然后，我们有<code>Array.of</code>,表现的更像是<code>Array</code>构造器,它修正了当数字作为参数的特殊情况,<br><code>Array.of</code>里的返回值更像<code>new Array()</code>，然后，在大部分情况，你应该使用数组字面量。</p>
-<pre><code>let x = new Array(3); // [undefined, undefined, undefined]
-let y = Array.of(8); // [8]
-let z = [1, 2, 3]; // Array literal
-</code></pre><p>最后一些比较重要的是，一些方法已经加入到<code>Array</code>原型中，我认为这里面<code>find</code>将会是最受开发者欢迎的方法.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">let</span> x = <span class="keyword">new</span> <span class="built_in">Array</span>(<span class="number">3</span>); <span class="comment">// [undefined, undefined, undefined]</span></div><div class="line"><span class="keyword">let</span> y = <span class="built_in">Array</span>.of(<span class="number">8</span>); <span class="comment">// [8]</span></div><div class="line"><span class="keyword">let</span> z = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]; <span class="comment">// Array literal</span></div></pre></td></tr></table></figure>
+<p>最后一些比较重要的是，一些方法已经加入到<code>Array</code>原型中，我认为这里面<code>find</code>将会是最受开发者欢迎的方法.</p>
 <ul>
 <li><code>find</code>返回符合回调函数里为<code>true</code>的第一个元素</li>
 <li><code>findIndex</code>返回符合回调函数里为<code>true</code>的第一个索引值</li>
@@ -459,69 +386,51 @@ let z = [1, 2, 3]; // Array literal
 <li><code>Math.trunc</code>返回整数值.</li>
 <li><code>Math.cbrt</code>返回立方根的值.</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="built_in">Math</span>.sign(<span class="number">5</span>); <span class="comment">// 1</span></div><div class="line"><span class="built_in">Math</span>.sign(<span class="number">-9</span>); <span class="comment">// -1</span></div><div class="line"></div><div class="line"><span class="built_in">Math</span>.trunc(<span class="number">5.9</span>); <span class="comment">// 5</span></div><div class="line"><span class="built_in">Math</span>.trunc(<span class="number">5.123</span>); <span class="comment">// 5</span></div><div class="line"></div><div class="line"><span class="built_in">Math</span>.cbrt(<span class="number">64</span>); <span class="comment">// 4</span></div></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">Math</span>.sign(<span class="number">5</span>); <span class="comment">// 1</span></div><div class="line"><span class="built_in">Math</span>.sign(<span class="number">-9</span>); <span class="comment">// -1</span></div><div class="line"></div><div class="line"><span class="built_in">Math</span>.trunc(<span class="number">5.9</span>); <span class="comment">// 5</span></div><div class="line"><span class="built_in">Math</span>.trunc(<span class="number">5.123</span>); <span class="comment">// 5</span></div><div class="line"></div><div class="line"><span class="built_in">Math</span>.cbrt(<span class="number">64</span>); <span class="comment">// 4</span></div></pre></td></tr></table></figure>
 <p>如果你想学到更多关于数字的运算方法<a href="http://www.2ality.com/2015/04/numbers-math-es6.html" target="_blank" rel="external">请点击</a></p>
 <h2 id="操作符"><a href="#操作符" class="headerlink" title="操作符"></a>操作符</h2><p>操作符<code>...</code>是一种非常方便的语法在特定的地方扩展数组中的元素，就像参数在函数中的调用，展示一些例子可能是最好的方式来证明他们是多么的有用.<br>首先，让我们看看怎么在另一个数组中扩充数组中的元素：</p>
 <figure class="highlight lsl"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">let values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>];</div><div class="line">let some = [...values, <span class="number">8</span>]; <span class="comment">// [1, 2, 4, 8]</span></div><div class="line">let more = [...values, <span class="number">8</span>, ...values]; <span class="comment">// [1, 2, 4, 8, 1, 2, 4]</span></div><div class="line"></div><div class="line"><span class="comment">// ES5 equivalent:</span></div><div class="line">let values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>];</div><div class="line"><span class="comment">// Iterate, push, sweat, repeat...</span></div><div class="line"><span class="comment">// Iterate, push, sweat, repeat...</span></div></pre></td></tr></table></figure>
 <p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20values%20%3D%20%5B1%2C%202%2C%204%5D%3B%0Alet%20some%20%3D%20%5B...values%2C%208%5D%3B%0Alet%20more%20%3D%20%5B...values%2C%208%2C%20...values%5D%3B%0Aconsole.log(some)%3B%0Aconsole.log(more)%3B" target="_blank" rel="external">运行代码</a></p>
 <p>当用参数调用函数的时候操作符也很有用</p>
-<pre><code>let values = [1, 2, 4];
-
-doSomething(...values);
-
-function doSomething(x, y, z) {
-       // x = 1, y = 2, z = 4
-
-}
-
-// ES5 equivalent:
-doSomething.apply(null, values);
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20values%20%3D%20%5B1%2C%202%2C%204%5D%3B%0AdoSomething(...values)%3B%0Afunction%20doSomething(x%2C%20y%2C%20z)%20%7B%0A%20%20%20%20console.log(arguments)%3B%0A%7D%0A" target="_blank" rel="external">运行代码</a></p>
-<p>就像你看到的一样,这节省了我们的常用<code>fn.apply()</code>方法。语法非常灵活,因为传播算子可以在参数列表的任何地方使用。这意味着下面的调用会产生同样的结果:</p>
+<figure class="highlight llvm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">    let values = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">4</span>]<span class="comment">;</span></div><div class="line"></div><div class="line">    doSomething(...values)<span class="comment">;</span></div><div class="line"></div><div class="line">    function doSomething(<span class="keyword">x</span>, y, z) &#123;</div><div class="line">           // <span class="keyword">x</span> = <span class="number">1</span>, y = <span class="number">2</span>, z = <span class="number">4</span></div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    // ES<span class="number">5</span> equivalent:</div><div class="line">    doSomething.apply(<span class="keyword">null</span>, values)<span class="comment">;</span></div><div class="line">```   </div><div class="line"></div><div class="line">[运行代码][<span class="number">9</span>]</div><div class="line">[<span class="number">9</span>]:https://babeljs.io/repl/#?experimental=<span class="keyword">false</span>&amp;evaluate=<span class="keyword">true</span>&amp;loose=<span class="keyword">false</span>&amp;spec=<span class="keyword">false</span>&amp;code=let<span class="symbol">%20</span>values<span class="symbol">%20</span><span class="symbol">%3</span>D<span class="symbol">%20</span><span class="symbol">%5</span>B<span class="number">1</span><span class="symbol">%2</span>C<span class="symbol">%202</span><span class="symbol">%2</span>C<span class="symbol">%204</span><span class="symbol">%5</span>D<span class="symbol">%3</span>B<span class="symbol">%0</span>AdoSomething(...values)<span class="symbol">%3</span>B<span class="symbol">%0</span>Afunction<span class="symbol">%20</span>doSomething(<span class="keyword">x</span><span class="symbol">%2</span>C<span class="symbol">%20</span>y<span class="symbol">%2</span>C<span class="symbol">%20</span>z)<span class="symbol">%20</span><span class="symbol">%7</span>B<span class="symbol">%0</span>A<span class="symbol">%20</span><span class="symbol">%20</span><span class="symbol">%20</span><span class="symbol">%20</span>console.log(arguments)<span class="symbol">%3</span>B<span class="symbol">%0</span>A<span class="symbol">%7</span>D<span class="symbol">%0</span>A</div><div class="line">就像你看到的一样,这节省了我们的常用`fn.apply()`方法。语法非常灵活,因为传播算子可以在参数列表的任何地方使用。这意味着下面的调用会产生同样的结果:</div></pre></td></tr></table></figure>
 <pre><code>let values = [2, 4];
 doSomething(1, ...values);
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20values%20%3D%20%5B2%2C%204%5D%3B%0AdoSomething(1%2C%20...values)%3B%0Afunction%20doSomething(x%2C%20y%2C%20z)%20%7B%0A%20%20%20%20console.log(arguments)%3B%0A%7D" target="_blank" rel="external">运行代码</a></p>
-<p>我们可以把运算符应用到数组和参数上。事实上，我们可以把他应用到所有的对象上，就像这样一个<code>NodeList</code>:</p>
+</code></pre><figure class="highlight llvm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[运行代码][<span class="number">10</span>]</div><div class="line">[<span class="number">10</span>]:https://babeljs.io/repl/#?experimental=<span class="keyword">false</span>&amp;evaluate=<span class="keyword">true</span>&amp;loose=<span class="keyword">false</span>&amp;spec=<span class="keyword">false</span>&amp;code=let<span class="symbol">%20</span>values<span class="symbol">%20</span><span class="symbol">%3</span>D<span class="symbol">%20</span><span class="symbol">%5</span>B<span class="number">2</span><span class="symbol">%2</span>C<span class="symbol">%204</span><span class="symbol">%5</span>D<span class="symbol">%3</span>B<span class="symbol">%0</span>AdoSomething(<span class="number">1</span><span class="symbol">%2</span>C<span class="symbol">%20</span>...values)<span class="symbol">%3</span>B<span class="symbol">%0</span>Afunction<span class="symbol">%20</span>doSomething(<span class="keyword">x</span><span class="symbol">%2</span>C<span class="symbol">%20</span>y<span class="symbol">%2</span>C<span class="symbol">%20</span>z)<span class="symbol">%20</span><span class="symbol">%7</span>B<span class="symbol">%0</span>A<span class="symbol">%20</span><span class="symbol">%20</span><span class="symbol">%20</span><span class="symbol">%20</span>console.log(arguments)<span class="symbol">%3</span>B<span class="symbol">%0</span>A<span class="symbol">%7</span>D</div><div class="line"></div><div class="line">我们可以把运算符应用到数组和参数上。事实上，我们可以把他应用到所有的对象上，就像这样一个`NodeList`:</div></pre></td></tr></table></figure>
 <pre><code>let form = document.querySelector(&apos;#my-form&apos;),
     inputs = form.querySelectorAll(&apos;input&apos;),
     selects = form.querySelectorAll(&apos;select&apos;);
 
 let allTheThings = [form, ...inputs, ...selects];
-</code></pre><p><a href="http://jsbin.com/vibaxerino/edit?html,js,console" target="_blank" rel="external">运行代码</a></p>
-<p>现在，<code>allTheThings</code>是一个二维数组包括<code>&lt;form&gt;</code>在内的节点它里面的<code>&lt;input&gt;</code>和<code>&lt;select&gt;</code>子节点</p>
-<h2 id="解构"><a href="#解构" class="headerlink" title="解构"></a>解构</h2><p>解构提供了一种方便的方法从对象或数组来提取数据。首先,可以使用一个数组来展示：</p>
+</code></pre><figure class="highlight markdown"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[<span class="string">运行代码</span>][<span class="symbol">11</span>]</div><div class="line">[<span class="symbol">11</span>]:<span class="link">http://jsbin.com/vibaxerino/edit?html,js,console</span></div><div class="line"></div><div class="line">现在，<span class="code">`allTheThings`</span>是一个二维数组包括<span class="code">`&lt;form&gt;`</span>在内的节点它里面的<span class="code">`&lt;input&gt;`</span>和<span class="code">`&lt;select&gt;`</span>子节点</div><div class="line"></div><div class="line"><span class="section">解构</span></div><div class="line">----------</div><div class="line">解构提供了一种方便的方法从对象或数组来提取数据。首先,可以使用一个数组来展示：</div></pre></td></tr></table></figure>
 <pre><code>let [x, y] = [1, 2]; // x = 1, y = 2
 
 // ES5 equivalent:
 var arr = [1, 2];
 var x = arr[0];
 var y = arr[1];
-</code></pre><p>使用这个语法,可以将多个变量赋值。不错的作用是,您可以很容易地交换变量值:</p>
+</code></pre><figure class="highlight makefile"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="section">使用这个语法,可以将多个变量赋值。不错的作用是,您可以很容易地交换变量值:</span></div></pre></td></tr></table></figure>
 <pre><code>let x = 1,
     y = 2;
 
 [x, y] = [y, x]; // x = 2, y = 1
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20x%20%3D%201%2C%0A%20%20%20%20y%20%3D%202%3B%0A%0A%5Bx%2C%20y%5D%20%3D%20%5By%2C%20x%5D%3B%0A" target="_blank" rel="external">运行代码</a></p>
-<p>解构也可以用在对象上，确定有可以匹配的属性：</p>
+</code></pre><figure class="highlight llvm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[运行代码][<span class="number">12</span>]</div><div class="line">[<span class="number">12</span>]:https://babeljs.io/repl/#?experimental=<span class="keyword">false</span>&amp;evaluate=<span class="keyword">true</span>&amp;loose=<span class="keyword">false</span>&amp;spec=<span class="keyword">false</span>&amp;code=let<span class="symbol">%20</span><span class="keyword">x</span><span class="symbol">%20</span><span class="symbol">%3</span>D<span class="symbol">%201</span><span class="symbol">%2</span>C<span class="symbol">%0</span>A<span class="symbol">%20</span><span class="symbol">%20</span><span class="symbol">%20</span><span class="symbol">%20</span>y<span class="symbol">%20</span><span class="symbol">%3</span>D<span class="symbol">%202</span><span class="symbol">%3</span>B<span class="symbol">%0</span>A<span class="symbol">%0</span>A<span class="symbol">%5</span>Bx<span class="symbol">%2</span>C<span class="symbol">%20</span>y<span class="symbol">%5</span>D<span class="symbol">%20</span><span class="symbol">%3</span>D<span class="symbol">%20</span><span class="symbol">%5</span>By<span class="symbol">%2</span>C<span class="symbol">%20</span><span class="keyword">x</span><span class="symbol">%5</span>D<span class="symbol">%3</span>B<span class="symbol">%0</span>A</div><div class="line">解构也可以用在对象上，确定有可以匹配的属性：</div></pre></td></tr></table></figure>
 <pre><code>let obj = {x: 1, y: 2};
 let {x, y} = obj; // x = 1, y = 2
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=let%20obj%20%3D%20%7Bx%3A%201%2C%20y%3A%202%7D%3B%0Alet%20%7Bx%2C%20y%7D%20%3D%20obj%3B" target="_blank" rel="external">运行代码</a></p>
-<p>你也可以使用这种机制改变变量的名字：</p>
+</code></pre><figure class="highlight llvm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[运行代码][<span class="number">13</span>]</div><div class="line">[<span class="number">13</span>]:https://babeljs.io/repl/#?experimental=<span class="keyword">false</span>&amp;evaluate=<span class="keyword">true</span>&amp;loose=<span class="keyword">false</span>&amp;spec=<span class="keyword">false</span>&amp;code=let<span class="symbol">%20</span>obj<span class="symbol">%20</span><span class="symbol">%3</span>D<span class="symbol">%20</span><span class="symbol">%7</span>Bx<span class="symbol">%3</span>A<span class="symbol">%201</span><span class="symbol">%2</span>C<span class="symbol">%20</span>y<span class="symbol">%3</span>A<span class="symbol">%202</span><span class="symbol">%7</span>D<span class="symbol">%3</span>B<span class="symbol">%0</span>Alet<span class="symbol">%20</span><span class="symbol">%7</span>Bx<span class="symbol">%2</span>C<span class="symbol">%20</span>y<span class="symbol">%7</span>D<span class="symbol">%20</span><span class="symbol">%3</span>D<span class="symbol">%20</span>obj<span class="symbol">%3</span>B</div><div class="line">你也可以使用这种机制改变变量的名字：</div></pre></td></tr></table></figure>
 <pre><code>let obj = {x: 1, y: 2};
 let {x: a, y: b} = obj; // a = 1, b = 2
-</code></pre><p>另外有趣的地方是可以模拟多个返回值：</p>
+</code></pre><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">另外有趣的地方是可以模拟多个返回值：</div></pre></td></tr></table></figure>
 <pre><code>function doSomething() {
    return [1, 2]
 }
 
 let [x, y] = doSomething(); // x = 1, y = 2
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=true&amp;spec=false&amp;code=function%20doSomething()%20%7B%0A%20%20%20%20return%20%5B1%2C%202%5D%0A%7D%0A%0Alet%20%5Bx%2C%20y%5D%20%3D%20doSomething()%3B" target="_blank" rel="external">运行代码</a></p>
-<p>解构可用于函数参数的默认值赋值。使用对象字面量,你可以模拟参数。</p>
+</code></pre><figure class="highlight llvm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[运行代码][<span class="number">14</span>]</div><div class="line">[<span class="number">14</span>]:https://babeljs.io/repl/#?experimental=<span class="keyword">false</span>&amp;evaluate=<span class="keyword">true</span>&amp;loose=<span class="keyword">true</span>&amp;spec=<span class="keyword">false</span>&amp;code=function<span class="symbol">%20</span>doSomething()<span class="symbol">%20</span><span class="symbol">%7</span>B<span class="symbol">%0</span>A<span class="symbol">%20</span><span class="symbol">%20</span><span class="symbol">%20</span><span class="symbol">%20</span>return<span class="symbol">%20</span><span class="symbol">%5</span>B<span class="number">1</span><span class="symbol">%2</span>C<span class="symbol">%202</span><span class="symbol">%5</span>D<span class="symbol">%0</span>A<span class="symbol">%7</span>D<span class="symbol">%0</span>A<span class="symbol">%0</span>Alet<span class="symbol">%20</span><span class="symbol">%5</span>Bx<span class="symbol">%2</span>C<span class="symbol">%20</span>y<span class="symbol">%5</span>D<span class="symbol">%20</span><span class="symbol">%3</span>D<span class="symbol">%20</span>doSomething()<span class="symbol">%3</span>B</div><div class="line">解构可用于函数参数的默认值赋值。使用对象字面量,你可以模拟参数。</div></pre></td></tr></table></figure>
 <pre><code>function doSomething({y = 1, z = 0}) {
    console.log(y, z);
 }
 doSomething({y: 2});
-</code></pre><h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><p><strong>默认值</strong><br>在ES6,定义函数参数的默认值是可以的。语法如下:</p>
+</code></pre><figure class="highlight asciidoc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="section">参数</span></div><div class="line">---------</div><div class="line">*<span class="strong">*默认值*</span>*</div><div class="line">在ES6,定义函数参数的默认值是可以的。语法如下:</div></pre></td></tr></table></figure>
 <pre><code>function doSomething(x, y = 2) {
     return x * y;
 
@@ -530,81 +439,30 @@ doSomething({y: 2});
 doSomething(5); // 10
 doSomething(5, undefined); // 10
 doSomething(5, 3); // 15
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=true&amp;spec=false&amp;code=function%20doSomething(x%2C%20y%20%3D%202)%20%7B%0A%20%20%20%20return%20x%20*%20y%3B%0A%7D%0A%0Aconsole.log(doSomething(5))%3B%0Aconsole.log(doSomething(5%2C%20undefined))%3B%0Aconsole.log(doSomething(5%2C%203))%3B" target="_blank" rel="external">运行代码</a></p>
-<p>看起来很干净,对吧?我确信在ES5之前你需要填充一些参数:</p>
+</code></pre><figure class="highlight llvm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[运行代码][<span class="number">15</span>]</div><div class="line">[<span class="number">15</span>]:https://babeljs.io/repl/#?experimental=<span class="keyword">false</span>&amp;evaluate=<span class="keyword">true</span>&amp;loose=<span class="keyword">true</span>&amp;spec=<span class="keyword">false</span>&amp;code=function<span class="symbol">%20</span>doSomething(<span class="keyword">x</span><span class="symbol">%2</span>C<span class="symbol">%20</span>y<span class="symbol">%20</span><span class="symbol">%3</span>D<span class="symbol">%202</span>)<span class="symbol">%20</span><span class="symbol">%7</span>B<span class="symbol">%0</span>A<span class="symbol">%20</span><span class="symbol">%20</span><span class="symbol">%20</span><span class="symbol">%20</span>return<span class="symbol">%20</span><span class="keyword">x</span><span class="symbol">%20</span>*<span class="symbol">%20</span>y<span class="symbol">%3</span>B<span class="symbol">%0</span>A<span class="symbol">%7</span>D<span class="symbol">%0</span>A<span class="symbol">%0</span>Aconsole.log(doSomething(<span class="number">5</span>))<span class="symbol">%3</span>B<span class="symbol">%0</span>Aconsole.log(doSomething(<span class="number">5</span><span class="symbol">%2</span>C<span class="symbol">%20</span>undefined))<span class="symbol">%3</span>B<span class="symbol">%0</span>Aconsole.log(doSomething(<span class="number">5</span><span class="symbol">%2</span>C<span class="symbol">%203</span>))<span class="symbol">%3</span>B</div><div class="line">看起来很干净,对吧?我确信在ES<span class="number">5</span>之前你需要填充一些参数:</div></pre></td></tr></table></figure>
 <pre><code>function doSomething(x, y) {
    y = y === undefined ? 2 : y;
       return x * y;
 
 }
-</code></pre><p>缺省默认参数值则会出现<code>underfind</code><br><strong>省略参数</strong><br>我们已经学习过运算符，省略参数是非常灵活的，它还使用<code>...</code>语法和允许您将末尾参数存储在一个数组:</p>
+</code></pre><figure class="highlight clean"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">缺省默认参数值则会出现`underfind`</div><div class="line">**省略参数**</div><div class="line">我们已经学习过运算符，省略参数是非常灵活的，它还使用`...`语法和允许您将末尾参数存储在一个数组:</div></pre></td></tr></table></figure>
 <pre><code>function doSomething(x, ...remaining) {
    return x * remaining.length;
 }
 
 doSomething(5, 0, 0, 0); // 15
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=false&amp;spec=false&amp;code=function%20doSomething(x%2C%20...remaining)%20%7B%0A%20%20%20%20return%20x%20*%20remaining.length%3B%0A%7D%0A%0AdoSomething(5%2C%200%2C%200%2C%200)%3B" target="_blank" rel="external">运行代码</a></p>
-<h2 id="模块"><a href="#模块" class="headerlink" title="模块"></a>模块</h2><p>模块肯定是一个受欢迎的加入到JavaScript中。我认为这是值得挖掘ES6特点。<br>任何严格的javascript项目都使用了模块化的方法－也许就像“模块模式”或者更多广泛使用的AMD和Common Js.然而，浏览器不是任何特性,你总是需要一个构建步骤或AMD或CommonJS模块加载器,使用工具来处理模块包括RequireJS，Browserify和Webpack.<br>ES6规范包括一个新的语法和加载程序模块的机制,如果在未来你想使用模块编写,这是你应该使用的语法,现代构建工具支持这种格式,可能通过一个插件,所以你应该很好使用了(别担心，我们在后面会讨论如何编译ES6).<br>现在，在ES6的模块语法上，模块设计通过<code>export</code>和<code>import</code>两个关键字引入.现在，用这两个例子让我们看看如何通过这两个方法引入模块.</p>
-<pre><code>// lib/math.js
-
-export function sum(x, y) {
-    return x + y;
-}
-export var pi = 3.141593;
-
-
-// app.js
-
-import { sum, pi  } from &quot;lib/math&quot;;
-console.log(&apos;2π = &apos; + sum(pi, pi));
-</code></pre><p>就像你看到的那样，这可以有多个<code>export</code>表述，每个必须显式状态导出的值的类型(在这个例子中，是<code>function</code> 和 <code>var</code>)</p>
+</code></pre><figure class="highlight llvm"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">[运行代码][<span class="number">16</span>]</div><div class="line">[<span class="number">16</span>]:https://babeljs.io/repl/#?experimental=<span class="keyword">false</span>&amp;evaluate=<span class="keyword">true</span>&amp;loose=<span class="keyword">false</span>&amp;spec=<span class="keyword">false</span>&amp;code=function<span class="symbol">%20</span>doSomething(<span class="keyword">x</span><span class="symbol">%2</span>C<span class="symbol">%20</span>...remaining)<span class="symbol">%20</span><span class="symbol">%7</span>B<span class="symbol">%0</span>A<span class="symbol">%20</span><span class="symbol">%20</span><span class="symbol">%20</span><span class="symbol">%20</span>return<span class="symbol">%20</span><span class="keyword">x</span><span class="symbol">%20</span>*<span class="symbol">%20</span>remaining.length<span class="symbol">%3</span>B<span class="symbol">%0</span>A<span class="symbol">%7</span>D<span class="symbol">%0</span>A<span class="symbol">%0</span>AdoSomething(<span class="number">5</span><span class="symbol">%2</span>C<span class="symbol">%200</span><span class="symbol">%2</span>C<span class="symbol">%200</span><span class="symbol">%2</span>C<span class="symbol">%200</span>)<span class="symbol">%3</span>B</div><div class="line"></div><div class="line">模块</div><div class="line">----------</div><div class="line">模块肯定是一个受欢迎的加入到JavaScript中。我认为这是值得挖掘ES<span class="number">6</span>特点。</div><div class="line">任何严格的javascript项目都使用了模块化的方法－也许就像“模块模式”或者更多广泛使用的AMD和Common Js.然而，浏览器不是任何特性,你总是需要一个构建步骤或AMD或CommonJS模块加载器,使用工具来处理模块包括RequireJS，Browserify和Webpack.</div><div class="line">ES<span class="number">6</span>规范包括一个新的语法和加载程序模块的机制,如果在未来你想使用模块编写,这是你应该使用的语法,现代构建工具支持这种格式,可能通过一个插件,所以你应该很好使用了(别担心，我们在后面会讨论如何编译ES<span class="number">6</span>).</div><div class="line">现在，在ES<span class="number">6</span>的模块语法上，模块设计通过`export`和`import`两个关键字引入.现在，用这两个例子让我们看看如何通过这两个方法引入模块.</div><div class="line">  </div><div class="line">```  </div><div class="line">    // lib/math.js</div><div class="line"></div><div class="line">    export function sum(<span class="keyword">x</span>, y) &#123;</div><div class="line">        return <span class="keyword">x</span> + y<span class="comment">;</span></div><div class="line">    &#125;</div><div class="line">    export var pi = <span class="number">3.141593</span><span class="comment">;</span></div><div class="line"></div><div class="line"></div><div class="line">    // app.js</div><div class="line"></div><div class="line">    import &#123; sum, pi  &#125; from <span class="string">"lib/math"</span><span class="comment">;</span></div><div class="line">    console.log('<span class="number">2</span>π = ' + sum(pi, pi))<span class="comment">;</span></div></pre></td></tr></table></figure>
+<p>就像你看到的那样，这可以有多个<code>export</code>表述，每个必须显式状态导出的值的类型(在这个例子中，是<code>function</code> 和 <code>var</code>)</p>
 <p><code>import</code>声明在这个例子中使用的语法(类似重构)明确定义引入的模块,引入模块作为一个整体,可以使用<code>*</code>通配符,给模块链接作为本地名称的关键字.</p>
-<pre><code>// app.js
-
-import * as math from &quot;lib/math&quot;;
-console.log(&apos;2π = &apos; + math.sum(math.pi, math.pi));
-</code></pre><p>模块系统功能<code>default</code>的出口,这可以是一个函数,在模块中引入一个默认的值，你只需要一个本地名称(重构前)</p>
-<pre><code>// lib/my-fn.js
-
-export default function() {
-       console.log(&apos;echo echo&apos;);
-
-}
-
-// app.js
-
-import doSomething from &apos;lib/my-fn&apos;;
-doSomething();
-</code></pre><p>请注意,<code>import</code>语句是同步的,但是该模块代码在所有的依赖代码执行前不会执行。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">    <span class="comment">// app.js</span></div><div class="line"></div><div class="line">    <span class="keyword">import</span> * <span class="keyword">as</span> math <span class="keyword">from</span> <span class="string">"lib/math"</span>;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'2π = '</span> + math.sum(math.pi, math.pi));</div><div class="line"></div><div class="line">模块系统功能<span class="string">`default`</span>的出口,这可以是一个函数,在模块中引入一个默认的值，你只需要一个本地名称(重构前)</div><div class="line">   </div><div class="line">    <span class="comment">// lib/my-fn.js</span></div><div class="line"></div><div class="line">    <span class="keyword">export</span> <span class="keyword">default</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">           <span class="built_in">console</span>.log(<span class="string">'echo echo'</span>);</div><div class="line"></div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="comment">// app.js</span></div><div class="line"></div><div class="line">    <span class="keyword">import</span> doSomething <span class="keyword">from</span> <span class="string">'lib/my-fn'</span>;</div><div class="line">    doSomething();</div></pre></td></tr></table></figure>
+<p>请注意,<code>import</code>语句是同步的,但是该模块代码在所有的依赖代码执行前不会执行。</p>
 <h2 id="Classes"><a href="#Classes" class="headerlink" title="Classes"></a>Classes</h2><p>Classes 是ES6非常棒的特性，一些人认为他们违背JavaScript的原型的本质,而其他人认为他们降低门槛对初学者和人来自其他语言,他们帮助人们编写大型应用程序。在任何情况下,他们是ES6的一部分。这有一个快速的介绍。<br>类是建立在<code>class</code>和<code>constructor</code>关键字。这是一个简短的例子:</p>
-<pre><code>class Vehicle {
-    constructor(name) {
-        this.name = name;
-        this.kind = &apos;vehicle&apos;;
-    }
-    getName() {
-        return this.name;
-    }   
-}
-
-// Create an instance
-let myVehicle = new Vehicle(&apos;rocky&apos;);
-</code></pre><p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=true&amp;spec=false&amp;code=class%20Vehicle%20%7B%0A%20%20%20%20constructor(name)%20%7B%0A%20%20%20%20%20%20%20%20this.name%20%3D%20name%3B%0A%20%20%20%20%20%20%20%20this.kind%20%3D%20&#39;vehicle&#39;%3B%0A%20%20%20%20%7D%0A%20%20%20%20getName()%20%7B%0A%20%20%20%20%20%20%20%20return%20this.name%3B%0A%20%20%20%20%7D%20%20%20%0A%7D%0A%0Alet%20myVehicle%20%3D%20new%20Vehicle(&#39;rocky&#39;)%3B%0A%0Aconsole.log(myVehicle.getName())%3B%0A" target="_blank" rel="external">运行代码</a></p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vehicle</span> </span>&#123;</div><div class="line">    <span class="keyword">constructor</span>(name) &#123;</div><div class="line">        <span class="keyword">this</span>.name = name;</div><div class="line">        <span class="keyword">this</span>.kind = <span class="string">'vehicle'</span>;</div><div class="line">    &#125;</div><div class="line">    getName() &#123;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</div><div class="line">    &#125;   </div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="comment">// Create an instance</span></div><div class="line">let myVehicle = new Vehicle(<span class="string">'rocky'</span>);</div></pre></td></tr></table></figure>
+<p><a href="https://babeljs.io/repl/#?experimental=false&amp;evaluate=true&amp;loose=true&amp;spec=false&amp;code=class%20Vehicle%20%7B%0A%20%20%20%20constructor(name)%20%7B%0A%20%20%20%20%20%20%20%20this.name%20%3D%20name%3B%0A%20%20%20%20%20%20%20%20this.kind%20%3D%20&#39;vehicle&#39;%3B%0A%20%20%20%20%7D%0A%20%20%20%20getName()%20%7B%0A%20%20%20%20%20%20%20%20return%20this.name%3B%0A%20%20%20%20%7D%20%20%20%0A%7D%0A%0Alet%20myVehicle%20%3D%20new%20Vehicle(&#39;rocky&#39;)%3B%0A%0Aconsole.log(myVehicle.getName())%3B%0A" target="_blank" rel="external">运行代码</a></p>
 <p>注意,类定义并不是一个普通对象;因此,类成员之间没有逗号</p>
 <p>通过类来创建一个实例，你必须通过<code>new</code>关键字,从class来继承一个基类，使用<code>extends</code>:</p>
-<pre><code>class Car extends Vehicle {
-    constructor(name) {
-        super(name);
-        this.kind = &apos;car&apos;
-    }
-}
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Car</span> <span class="keyword">extends</span> <span class="title">Vehicle</span> </span>&#123;</div><div class="line">    constructor(name) &#123;</div><div class="line">        <span class="keyword">super</span>(name);</div><div class="line">        <span class="keyword">this</span>.kind = <span class="symbol">'ca</span>r'</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line"></div><div class="line">let myCar = <span class="keyword">new</span> <span class="type">Car</span>(<span class="symbol">'bump</span>y');</div><div class="line"></div><div class="line">myCar.getName(); <span class="comment">// 'bumpy'</span></div><div class="line">myCar instanceof <span class="type">Car</span>; <span class="comment">// true</span></div><div class="line">myCar instanceof <span class="type">Vehicle</span>; <span class="comment">//true</span></div></pre></td></tr></table></figure>
 
-let myCar = new Car(&apos;bumpy&apos;);
-
-myCar.getName(); // &apos;bumpy&apos;
-myCar instanceof Car; // true
-myCar instanceof Vehicle; //true
-</code></pre>
       
     </div>
 
@@ -824,7 +682,7 @@ myCar instanceof Vehicle; //true
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">2.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函数"><span class="nav-number">3.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">4.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array"><span class="nav-number">5.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math"><span class="nav-number">6.</span> <span class="nav-text">Math</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作符"><span class="nav-number">7.</span> <span class="nav-text">操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解构"><span class="nav-number">8.</span> <span class="nav-text">解构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参数"><span class="nav-number">9.</span> <span class="nav-text">参数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#模块"><span class="nav-number">10.</span> <span class="nav-text">模块</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classes"><span class="nav-number">11.</span> <span class="nav-text">Classes</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#变量"><span class="nav-number">2.</span> <span class="nav-text">变量</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#箭头函数"><span class="nav-number">3.</span> <span class="nav-text">箭头函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String"><span class="nav-number">4.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Array"><span class="nav-number">5.</span> <span class="nav-text">Array</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Math"><span class="nav-number">6.</span> <span class="nav-text">Math</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#操作符"><span class="nav-number">7.</span> <span class="nav-text">操作符</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Classes"><span class="nav-number">8.</span> <span class="nav-text">Classes</span></a></li></ol></div>
             
 
           </div>

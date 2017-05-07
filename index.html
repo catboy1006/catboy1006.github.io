@@ -839,17 +839,9 @@
         
           <h2 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h2><p>你可能已经听到关于<strong>ECMAScript6</strong> (或者ES6), 作为下一个JavaScript的版本, 它也有一些很棒的新特性。这些特性有不同程度的复杂性，并在脚本和应用程序非常有用。在这篇文章里，我们将会讨论哪些经过精心挑选并且在你每天javascript coding 中使用的功能。<br>请注意，现在浏览器会很好的支持这些新的ES6功能，也许支持的情况会有所不同。如果你需要支持缺少许多ES6功能的浏览器，我会寻找解决方案，今天可以帮助你开始使用ES6。<br>大部分的代码都带有一个外部的“运行代码”链接，这样就可以看到代码并使用它。</p>
 <h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><p><strong> let </strong><br>你已经使用过<code>var</code> 声明变量。现在可以更好的使用<code>let</code>。细小之处在于作用域。<code>var</code>结果取决于函数作用域，<code>let</code>的作用域范围则只是它所在的代码块。</p>
-<pre><code>if(true) {
-    let x = 1;
-}
-console.log(x); // undefined
-</code></pre><p>这可以使你的代码更加干净，从而减少更多的变量。就拿这个经典的数组循环来说：</p>
-<pre><code>for(let i = 0, l = list.length; i &lt; l; i++) {
-   // do something with list[i]
-}
-
-console.log(i); // undefined
-</code></pre>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="literal">true</span>) &#123;</div><div class="line">    <span class="keyword">let</span> x = <span class="number">1</span>;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(x); <span class="comment">// undefined</span></div></pre></td></tr></table></figure>
+<p>这可以使你的代码更加干净，从而减少更多的变量。就拿这个经典的数组循环来说：</p>
+<figure class="highlight qml"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>, l = <span class="built_in">list</span>.length; i &lt; l; i++) &#123;</div><div class="line">   <span class="comment">// do something with list[i]</span></div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(i); <span class="comment">// undefined</span></div></pre></td></tr></table></figure>
           <!--noindex-->
           <div class="post-button text-center">
             <a class="btn" href="/2016/10/30/es6/#more" rel="contents">
